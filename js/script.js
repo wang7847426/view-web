@@ -94,15 +94,14 @@ $(function(){
 					alert("您的浏览器版本较低，请尝试更新浏览器！")
 				}else{
 					var dataInfo = JSON.parse(window.localStorage.getItem("dataInfo"));
-					console.log(dataInfo);
+					obj.id = dataInfo[dataInfo.length-1].id + 1 ;
 					dataInfo.push(obj);
 					window.localStorage.setItem("dataInfo",JSON.stringify(dataInfo));
 				}
 				_this.dataObj.push(obj);
 				var html = _this.htmlTemplate(_this.dataObj);
 				$(".data-info").append(html);
-				_this.formInit();	
-
+				_this.formInit();
 			})
 		},
 		jqueryAjax:function(){
@@ -118,6 +117,7 @@ $(function(){
 							alert("您的浏览器版本较低，请尝试更新浏览器！")
 						}else{
 							if(window.localStorage.getItem("dataInfo") == null) {
+								// var infoId = res.data.projects[res.data.projects.length-1].id;
 								window.localStorage.setItem("dataInfo",JSON.stringify(res.data.projects));
 								var html = _this.htmlTemplate(JSON.parse(window.localStorage.getItem("dataInfo")));
 								$(".data-info").append(html);
@@ -134,7 +134,7 @@ $(function(){
 			/*
 				数据表单初始化
 			*/
-			this.dataObj = {};
+			this.dataObj = [];
 			var formObj =  this.addBtn.parent().siblings(".modal-body").find("form");
 			formObj.find("#recipient-name").val("");
 			formObj.find("#recipient-age").val("");
