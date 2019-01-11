@@ -1,0 +1,12 @@
+h1 {
+	width: 200px;
+	height: 200px;
+	margin: 100px auto;
+	color: red;
+	text-align: center;
+	line-height: 200px;
+	background: yellow;
+}
+h1.hover {
+			
+}
