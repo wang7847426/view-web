@@ -1,0 +1,11 @@
+
+div{
+	width: 200px;
+	height: 200px;
+	background: red;
+	margin: 100px auto;
+	text-align: center;
+	line-height: 200px;
+	color: #fff;
+	font-size: 18px;
+}
