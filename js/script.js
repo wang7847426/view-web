@@ -124,7 +124,7 @@ $(function(){
 					alert("您的浏览器版本较低，请尝试更新浏览器！")
 				}else{
 					var dataInfo = JSON.parse(window.localStorage.getItem("dataInfo"));
-					obj.id = dataInfo[dataInfo.length-1].id + 1 ;
+					obj.id = dataInfo[dataInfo.length-1].id + 1  || 1;
 					dataInfo.push(obj);
 					window.localStorage.setItem("dataInfo",JSON.stringify(dataInfo));
 				}
