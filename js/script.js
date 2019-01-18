@@ -25,13 +25,20 @@ $(function(){
 			this.reviseLiObj();
 			this.jqueryAjax();
 		},
+		hasBtnClass:function(arrClass,strClass){
+			for(var i = 0; i<=arrClass.length-1; i++){
+				if(arrClass[i] == strClass){
+					return true;
+				}
+			}
+		},
 		reviseLiObj:function(){
 			var dataInfoIndex = 0;
 			var _this = this;
 			this.dataInfoObj.on("click",this.reviseBtn,function(e){
-				
 				var _e =  e.target || e.currentTarget;
-				if(_e.classList[5] == "revise-btn"){
+				var hasCla = _this.hasBtnClass(_e.classList,"revise-btn");
+				if(hasCla){
 					var dataInfo = JSON.parse(window.localStorage.getItem("dataInfo"));
 					for(var i = 0; i<= dataInfo.length-1; i++){
 						if($(_e).parents("li").attr("data-index") == dataInfo[i].id){
@@ -64,7 +71,8 @@ $(function(){
 			var _this = this;
 			this.dataInfoObj.on("click",this.delBtn,function(e){
 				var _e =  e.target || e.currentTarget;
-				 if(_e.classList[5] == "del-btn"){
+				var hasCla = _this.hasBtnClass(_e.classList,"del-btn");
+				 if(hasCla){
 					if(!window.localStorage){
 						alert("您的浏览器版本较低，请尝试更新浏览器！")
 					}else{
@@ -88,7 +96,7 @@ $(function(){
 				var formObj =  $(this).parent().siblings(".modal-body").find("form");
 				obj.name = formObj.find("#recipient-name").val();
 				obj.age = formObj.find("#recipient-age").val();
-				obj.sex = formObj.find("#recipient-sex").val();
+				obj.sex = formObj.find("#recipient-sex").val() == "男"? 1 : 2;
 				obj.motto = formObj.find("#recipient-motto").val();
 				if(!window.localStorage){
 					alert("您的浏览器版本较低，请尝试更新浏览器！")
