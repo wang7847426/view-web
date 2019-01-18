@@ -3,11 +3,13 @@ $(function(){
 		dataInfoObj:$(".data-info"),
 		addBtn:$(".add-btn"),
 		reviseLayer:$("#revise-layer"),
+		queryBtn:$(".query-data") 
 	}
 	function Crud(option){
 		this.option = option;
 		this.reviseLayer = this.option.reviseLayer;
 		this.dataInfoObj = this.option.dataInfoObj;
+		this.queryData = this.option.queryBtn;
 		this.operateBtn = this.option.dataInfoObj.find(".operate");
 		this.delBtn = this.dataInfoObj.find(".del-btn");
 		this.reviseBtn = this.dataInfoObj.find(".revise-btn");
@@ -24,6 +26,26 @@ $(function(){
 			this.delLiObj();
 			this.reviseLiObj();
 			this.jqueryAjax();
+			this.queryDataInfo()
+		},
+		queryDataInfo:function(){
+			var _this = this;
+			this.queryData.find(".input-group-btn").on("click",function(){
+				_this.dataInfoObj.find("li").not(".nav").css("display","none");
+				var queryCon = $(this).siblings("input").val();
+				var dataInfo = JSON.parse(window.localStorage.getItem("dataInfo"));
+				for(var i = 0; i<=dataInfo.length-1; i++){
+				if(dataInfo[i].name == queryCon){
+					i = i + 1;
+					_this.dataInfoObj.find("li:eq("+ i  +")").css("display","block");
+				}
+			}
+			})
+			this.queryData.find(".form-control").on("keyup",function(){
+				if($(this).val() == ""){
+					_this.dataInfoObj.find("li").not(".nav").css("display","block");
+				}
+			})
 		},
 		hasBtnClass:function(arrClass,strClass){
 			for(var i = 0; i<=arrClass.length-1; i++){
