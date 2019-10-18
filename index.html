@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>我的网站</title>
+    <meta charset="utf-8">
+    <title>滚动视觉差示例</title>
+    <style>
+        *{
+            padding:0;
+            margin:0
+        }
+        body{
+            text-align:center;
+            /*background-attachment:fixed;*/
+        }
+        #main{
+            width: 1280px;
+            margin:auto
+        }
+        .header{
+            background:#fff;
+            padding: 0;
+            /*height: 500px;*/
+        }
+        .bg-attachment{
+            background:url("https://50jia-website.oss-cn-beijing.aliyuncs.com/MB/mbimgs/MB_01.png") center center no-repeat;
+            background-size: 750px 1356px;
+            /*box-shadow:0 7px 18px #000000 inset,0 -7px 18px #000000 inset;*/
+            /*-webkit-box-shadow:0 7px 18px #000000 inset,0 -7px 18px #000000 inset;*/
+            /*-moz-box-shadow: 0 7px 18px #000000 inset,0 -7px 18px #000000 inset;*/
+            /*-o-box-shadow: 0 7px 18px #000000 inset,0 -7px 18px #000000 inset;*/
+            /*-ms-box-shadow: 0 7px 18px #000000 inset,0 -7px 18px #000000 inset;*/
+            background-attachment:fixed;
+        }
+        .bg-attachment .shadow{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:60%;
+            height:500px;
+            overflow:hidden;
+            margin:auto;
+            color: blue;
+            background: rgba(0,0,0,.3);
+        }
+        .div2{
+            background:url("https://50jia-website.oss-cn-beijing.aliyuncs.com/tuiguang/qz0721/M_05.jpg") center center repeat-y;
+            background-attachment:fixed;
+        }
+    </style>
 </head>
 <body>
- <h1>我的网站</h1>
+<div id="main">
+    <div class="header">
+        <img src="https://50jia-website.oss-cn-beijing.aliyuncs.com/tuiguang/qz0721/M_01.jpg">
+    </div>
+    <div class="bg-attachment">
+        <div class="shadow">
+            往shadow里面写一写字是什么效果呢
+        </div>
+    </div>
+    <div class="header">
+        <img src="https://50jia-website.oss-cn-beijing.aliyuncs.com/tuiguang/qz0721/M_04.jpg">
+    </div>
+    <div class="bg-attachment div2">
+        <div class="shadow">
+          <a href="https://wang7847426.github.io/view-web/crud/" >
+            增删改查
+          </a>
+          <a href="https://wang7847426.github.io/view-web/dh/" >
+            动画
+          </a>
+          <a href="https://wang7847426.github.io/view-web/game-snake/" >
+            小游戏
+          </a>
+          <a href="https://wang7847426.github.io/view-web/my-swiper/" >
+            轮播图
+          </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
