@@ -1,7 +1,7 @@
 $(function () {
     myBubble();//canvas冒泡
     ninePageClick();//page9点击事件
-    doWx();//默认微信分享
+    // doWx();//默认微信分享
     // loading
     // var arrImglist = [
     //     "http://www.xbiao.com/images/static/mido16/bg1.jpg",
@@ -109,59 +109,59 @@ $(function () {
         })
     }
 
-    var GOLBAL = {
-        wxOptions: {
-            title: "123123",
-            desc: "123123123132",
-            imgUrl: "https://wang7847426.github.io/view-web/wedding/images/000.png"
-        }
-    };
+    // var GOLBAL = {
+    //     wxOptions: {
+    //         title: "123123",
+    //         desc: "123123123132",
+    //         imgUrl: "https://wang7847426.github.io/view-web/wedding/images/000.png"
+    //     }
+    // };
 
-    function doWx() {
-        var timestamp, nonceStr, signature;
-        $.ajax({
-            url: "http://www.xbiao.com/weiXin/getSignPackage?callback=?",
-            dataType: "jsonp",
-            async: false,
-            data: {url: encodeURIComponent(window.location.href.split('#')[0])},
-            success: function (data) {
-                timestamp = data.timestamp;
-                nonceStr = data.nonceStr;
-                signature = data.signature;
-                wx.config({
-                    debug: false,
-                    appId: 'wx96ccb2373a02f51b',
-                    timestamp: timestamp,
-                    nonceStr: nonceStr,
-                    signature: signature,
-                    jsApiList: [
-                        'checkJsApi',
-                        'onMenuShareTimeline',
-                        'onMenuShareAppMessage'
-                    ]
-                });
-                wx.ready(function () {
-                    wx.checkJsApi({
-                        jsApiList: [
-                            'onMenuShareTimeline',
-                            'onMenuShareAppMessage'
-                        ]
-                    });
-                    //分享给朋友
-                    wx.onMenuShareAppMessage({
-                        title: GOLBAL.wxOptions.title,
-                        desc: GOLBAL.wxOptions.desc,
-                        imgUrl: GOLBAL.wxOptions.imgUrl
-                    });
-                    //分享到朋友圈
-                    wx.onMenuShareTimeline({
-                        title: GOLBAL.wxOptions.title,
-                        imgUrl: GOLBAL.wxOptions.imgUrl
-                    });
-                    document.getElementById("video2").play();
-                })
-            }
-        });
-    };
+    // function doWx() {
+    //     var timestamp, nonceStr, signature;
+    //     $.ajax({
+    //         url: "https://wang7847426.github.io/view-web/wedding/images/000.png",
+    //         dataType: "jsonp",
+    //         async: false,
+    //         data: {url: encodeURIComponent(window.location.href.split('#')[0])},
+    //         success: function (data) {
+    //             timestamp = data.timestamp;
+    //             nonceStr = data.nonceStr;
+    //             signature = data.signature;
+    //             wx.config({
+    //                 debug: false,
+    //                 appId: 'wx7617fe864eefc820',
+    //                 timestamp: timestamp,
+    //                 nonceStr: nonceStr,
+    //                 signature: signature,
+    //                 jsApiList: [
+    //                     'checkJsApi',
+    //                     'onMenuShareTimeline',
+    //                     'onMenuShareAppMessage'
+    //                 ]
+    //             });
+    //             wx.ready(function () {
+    //                 wx.checkJsApi({
+    //                     jsApiList: [
+    //                         'onMenuShareTimeline',
+    //                         'onMenuShareAppMessage'
+    //                     ]
+    //                 });
+    //                 //分享给朋友
+    //                 wx.onMenuShareAppMessage({
+    //                     title: GOLBAL.wxOptions.title,
+    //                     desc: GOLBAL.wxOptions.desc,
+    //                     imgUrl: GOLBAL.wxOptions.imgUrl
+    //                 });
+    //                 //分享到朋友圈
+    //                 wx.onMenuShareTimeline({
+    //                     title: GOLBAL.wxOptions.title,
+    //                     imgUrl: GOLBAL.wxOptions.imgUrl
+    //                 });
+    //                 document.getElementById("video2").play();
+    //             })
+    //         }
+    //     });
+    // };
 
 })

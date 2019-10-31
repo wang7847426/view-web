@@ -62,10 +62,19 @@ img{vertical-align:top}
 }
 */
 
+.tit{
+  margin-bottom: 50px;
+  text-align: center;
+}
 .part01-002 img{
   position: absolute;
   top: 222px;
   width: 391px;
   height: 351px;
   left: 176px;
+}
+
+.part03-deco li{
+  text-align: center;
+  margin-bottom: 15px;
 }
