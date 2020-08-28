@@ -4,8 +4,7 @@ $(function() {
       $('.page_one').addClass('hide');
       $('.page_two').removeClass('hide');
       typeWrite();
-      fireworks();
-      
+      // fireworks();
     });
   });
   $('#no').click(function(event) {
@@ -81,14 +80,13 @@ function modal(content, callback) {
   });
 }
 
-var myWords = '有人说，人的一生会遇到2920万人，而两个人相爱的概率只有0.000049。在这茫茫人海中，两个人能相遇就值得感激，能相爱更是一种难得。所以，我很庆幸上天让我遇见了你。我希望有个如你一般的人，能看完我写过的所有状态，读完我所有的日志，看完我从小到大的照片，试着听我喜欢的歌。如果可以，甚至陪我去我喜欢的地方，只想弥补错过你的青春。';
-var x = 0;
-
-var timer = setInterval(function typeWrite(){
-  $('.type_words').html(myWords.substring(0, x++)+'_');
-  if (x > myWords.length) {
-    x = myWords.length;
-    clearTimeout(timer)
-  }
-},  150);
- 
+// var myWords = '有人说，人的一生会遇到2920万人，而两个人相爱的概率只有0.000049。在这茫茫人海中，两个人能相遇就值得感激，能相爱更是一种难得。所以，我很庆幸上天让我遇见了你。我希望有个如你一般的人，能看完我写过的所有状态，读完我所有的日志，看完我从小到大的照片，试着听我喜欢的歌。如果可以，甚至陪我去我喜欢的地方，只想弥补错过你的青春。';
+// var x = 0;
+// var timer = setInterval(function typeWrite(){
+//   $('.type_words span').html(myWords.substring(0, x++)+'_');
+//   if (x > myWords.length) {
+//     x = myWords.length;
+//     clearTimeout(timer)
+//   }
+// },  150);
+//  
