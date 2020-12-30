@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+    <style>
+      *{
+        margin: 0;padding: 0;
+      }
+      .container{
+        width: 200px;
+        height: 150px;
+        border: 1px solid #ccc;
+        background: #eee;
+        margin: 0 auto;
+        position:relative;
+      }
+       .filepath{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+      .text{
+        position: absolute;
+        top: 0; left: 0px;
+        width: 100%;
+        height: 100%;
+        font-size: 36px;
+        line-height: 150px;
+        text-align: center;
+      }
+      .total-box{
+        text-align: center;
+      }
+     
+      .img-list{
+        list-style: none;
+        margin: 0 auto;
+        width: 200px;
+      }
+      .img-list li{
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .img-list li span{
+        width: 100%;
+        height: 30px;
+        background: rgba(0,0,0,0.5);
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        transition: all 0.8s;
+      }
+      .img-list li:hover span{
+        bottom: 0;
+      }
+      .btn{
+        width:  200px;
+        height: 30px;
+        background: rgba(123,123,5,0.5);
+        border: 1px solid #ccc;
+        margin: 10px auto;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 5px;
+
+      }
+    </style>
+</head>
+<body>
+<div class="btn">
+ 上传图片
+</div>
+ <div class="container">
+   <input type="file" id="file" class="filepath" multiple accept="image/jpg,image/jpeg,image/png,image/PNG">
+   <span class="text">+</span>
+</div>
+<div class="total-box">
+   加载图片大小：<span id='total'>0</span>
+</div>
+<ul class="img-list" id="img-list"></ul>
+   
+
+<script type="text/javascript">
+        $(function() {
+          var imgArr =[];
+           function UpImages(fs){
+            //循环多文件上传
+            for (var i = 0; i < fs.length; i++) {
+                //文件类型
+                var _type = fs[i].type;
+                // console.log(_type);
+                //判断文件类型
+                if (_type.indexOf('image') != -1) {
+                    //文件大小控制
+                    // console.log(fs[i].size);
+                    //读取文件对象
+                    var reader = new FileReader();
+                    //读为DataUrl,无返回值
+                    reader.readAsDataURL(fs[i]);
+                    imgArr.push(reader);
+                    //开始加载
+                    reader.onloadstart = function(e) {
+                      console.log("上传开始")  
+                    }
+                    // 这个事件在读取进行中定时触发
+                    reader.onprogress = function(e) {
+                      $("#total").html(e.total);
+                    }
+                    //当读取成功时触发，this.result为读取的文件数据
+                    reader.onload = function() {
+                        //添加文件预览
+                        var iLi = document.createElement("li");
+                        var iSpan =  document.createElement("span");
+                        var oImg = document.createElement("img");
+                        oImg.src = this.result;
+                        iLi.appendChild(oImg);
+                        iLi.appendChild(iSpan);
+                        document.getElementById("img-list").appendChild(iLi);
+                    }
+                    //无论成功与否都会触发
+                    reader.onloadend = function() {
+                        if (reader.error) {
+                            console.log(reader.error);
+                        } else {
+                          //上传没有错误，ajax发送文件，上传二进制文件
+                           console.log("上传结束");   
+                        }
+                    }
+                } else {
+                    alert('请上传图片文件！');
+                }
+            }
+          }
+            /*思路：
+             *1.熟悉文件拖拽  目标元素 的四个事件,注意:ondragover、ondrop事件中阻止默认行为
+             *2.拖拽放置后，获取到文件对象集合：e.dataTransfer.files
+             *3.循环该集合中的每个文件对象，判断文件类型以及文件大小，是指定类型则进行相应的操作
+             *4.读取文件信息对象：new FileReader()，它有读取文件对象为DataUrl等方法：readAsDataURL(文件对象)、读取成功之后触发的事件：onload事件等，this.result为读取到的数据
+             *5.在FileReader对象中的几个事件中进行相应的逻辑处理
+             *
+             */
+
+            //必须将jq对象转换为js对象，调用原生方法
+            var oDiv = $(".container").get(0);
+            var oP = $(".text");
+            //进入
+            oDiv.ondragenter = function() {
+              oP.html('+');
+            }
+            //移动，需要阻止默认行为，否则直接在本页面中显示文件
+            oDiv.ondragover = function(e) {
+              e.preventDefault();
+            }
+            //离开
+            oDiv.onleave = function() {
+              oP.html('+');
+            }
+
+            //拖拽放置，也需要阻止默认行为
+            oDiv.ondrop = function(e) {
+              e.preventDefault();
+              //获取拖拽过来的对象,文件对象集合
+              UpImages(e.dataTransfer.files);
+            }
+
+            //  input 上传图片
+            $("#file").on("change",function(){
+              UpImages(document.getElementById('file').files);
+            })
+
+            // 删除 预览图片 
+            $(".img-list").on("click", "li span", function(){
+              var index = $(this).parent("li").index();
+              imgArr.splice(index, 1)
+              $(this).parent('li').remove();
+            })
+
+             // ajax 向服务器发送图片 
+            $(".btn").on("click",function(){
+              var formFile = new FormData();
+              $.each(imgArr, function(i, file){
+                formFile.append('myFile[]', file);
+                formFile.append('num', i);
+              });
+              console.log("上传成功")
+            })
+        });
+    </script>
+</html>
