@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper.3.1.7.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+  <script type="text/javascript">
+      var _phoneWidth = parseInt(window.screen.width);
+      var _phoneScale = _phoneWidth / 750;
+      var ua = navigator.userAgent;
+      if (/Android (\d+\.\d+)/.test(ua)) {
+          var _version = parseFloat(RegExp.$1);
+          if (_version > 2.3) {
+              document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi, initial-scale=' + _phoneScale + ', minimum-scale=' + _phoneScale + ', maximum-scale=' + _phoneScale + ', user-scalable=no">');
+          } else {
+              document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
+          }
+      } else {
+          document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
+      }
+  </script>
+
+  <script src="./js/jquery.js"></script>
+  <script src="./js/swiper.jquery4.3.2.js"></script>
+
+</head>
+<body>
+
+  <div class="dx_english">
+    <div class="english_title">读写</div>
+    <audio controls autoplay id="audio">
+      <source src="" type="audio/mpeg">
+      您的浏览器不支持 audio 元素。
+    </audio>
+    <div class="dx_english_box">
+      <div class="swiper-container">
+        <div class="swiper-wrapper" id="swiper-wrapper">
+        </div>
+      </div>
+    </div>
+    <div class="show_px_layer" id="show_px_layer">
+      拼写
+    </div>
+    <div class="px_layer">
+      <div class="zw">作者</div>
+      <ul class="english_word clearfix"></ul>
+      <div class="dy" id="px_layer_dy">[ˈɔːθər]</div>
+      <ul class="px_word clearfix"></ul>
+    </div>
+    <div class="left_study">
+      <div class="text-1">有志者事竟成，破釜沉舟，百二秦关终属楚，</div>
+      <div class="text-2">苦心人，天不负卧薪尝胆，三千越甲可吞吴。</div>
+      <div class="author">----蒲松龄</div>
+    </div>
+    <div class="right_study">
+      <div class="text-1">有志者事竟成，破釜沉舟，百二秦关终属楚，</div>
+      <div class="text-2">苦心人，天不负卧薪尝胆，三千越甲可吞吴。</div>
+      <div class="author">----蒲松龄</div>
+    </div>
+  </div>
+<script src="./js/dx_english.js"></script>
+</body>
+</html>

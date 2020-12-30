@@ -1,0 +1,244 @@
+* {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; max-height: 999999px; }
+body{ margin:0;padding:0; width:100%; font-family:"Myriad Pro Regular","Microsoft Yahei"; margin:auto; max-width:1000px; overflow-x:hidden; height: 100%;}
+html,body {position: relative;height:100%;}
+h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr,figure{ margin:0; padding:0; color:#000;}
+h1,h2,h3,h4,h5,h6{ font-size:100%; font-weight:100;}
+img,fieldset,iframe,table{ border:0;}
+ul,ol,dl,dt,dd,li{ list-style:none;}
+b{ font-weight:100;}
+em,i{ font-style:normal;}
+a{ color:#333; text-decoration:none;}
+a:hover{ text-decoration:none;}
+img { vertical-align: top; }
+.clear{ clear:both;}
+.clearfix{ zoom:1;}
+.clearfix:after{ content:'.'; display:block; visibility:hidden; clear:both; width:1px; height:1px;}
+.left{ float:left;}
+.right{ float:right;}
+.ta_c { text-align: center;}
+.ta_r { text-align: right; }
+.pos_abs{ position:absolute;}
+.pos_rel{ position:relative;}
+.wrapper{ margin:auto;width: 850px; position:relative;}
+.hidden{ display:none;}
+.indent{ text-indent:2em;}
+.weixinPic { height:1px; overflow:hidden; position:absolute; left:0; top:-2px;}
+.box_h { position:absolute; top:0; left:0; width:100%; height:100%; z-index:3;}
+.pa{ position:absolute;}
+.pr{ position:relative;}
+.hide{display: none;}
+.swiper-container-vertical>.swiper-scrollbar { right: -1000px; }
+.title {  z-index: 99;  width: 359px;  height: 59px;  background: url(../../../images/static/2019RM52-05/page_logo.png) no-repeat;  position: absolute;  top: 50%;  left:50%;  margin-left: -180px;   margin-top: -555px;  }
+.swiper-container {  width: 100%;  height: 100%; }
+.swiper-slide { position: relative; overflow: hidden;}
+.title.act{   -webkit-animation: bounceInDown 2s 0s both; animation: bounceInDown 2s 0s both; }
+.bg {overflow: hidden;  width: 100%;  height: 100%;  background: url(../../../images/static/iwc2020/banner-bg.png) no-repeat center center; background-size: cover; }
+.iwc_logo{position: absolute; top: 3%;left:50%;width: 166px;height: 64px; margin-left: -83px; background: url(../../../images/static/iwc2020/part11-logo.png)no-repeat center;}
+audio{opacity: 0}
+
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;  
+}
+.container div{
+    width: 200px;
+    height:  200px;
+    text-align: center;
+    line-height: 200px;
+
+
+}
+.container div a{
+    color: white;
+    font-size: 32px;
+}
+.container div.dx_english{
+    background: orange;
+}
+.container div.px_english{
+    background: blue;
+}
+
+
+/* 读写 */
+.dx_english {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dx_english .english_title{
+     height: 80px;
+    text-align: center;
+    line-height: 80px;
+    background: orange;
+    color: white;
+    font-size: 26px;
+    position: relative;
+     z-index: 9999;
+}
+.dx_english .dx_english_box{
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.dx_english .swiper-slide{
+    width: 100%;
+    height: 100%;
+    background: rgb(199,237,204);
+}
+.dx_english .swiper-slide div{
+    text-align: center;;
+    padding: 0 15px; 
+}
+
+.dx_english .swiper-slide div.yw{
+    font-size: 52px;
+    margin-top: 100px;
+}
+
+.dx_english .swiper-slide div.dy{
+    font-size: 36px;
+    margin-top: 50px;
+    color: #aaa;
+}
+.dx_english .swiper-slide div.zw{
+    font-size: 42px;
+    margin-top: 100px;
+    color: #74b3fb;
+}
+.dx_english .left_study{
+    width: 25%;
+    height: 100%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    background: #ccc;
+    position: absolute;
+    top: 0;left: 0;
+    font-size: 32px;
+    color: white;
+}
+.dx_english .right_study{
+    width: 25%;
+    height: 100%;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    background: #ccc;
+    font-size: 32px;
+    color: white;
+    position: absolute;
+    top: 0;right: 0;
+}
+.dx_english .left_study div, .dx_english .right_study div{
+    writing-mode:tb-rl;
+    position: absolute;
+}
+.dx_english .left_study .text-1{
+    top: 145px;
+    left: 0;
+}
+.dx_english .left_study .text-2{
+    top: 440px;
+    left: 55px;
+}
+.dx_english .left_study .author{
+    top: 715px;
+    left: 110px;
+}
+.dx_english .px_layer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 888;
+    padding-top: 80px;
+    background: rgb(204,224,137);
+    opacity: 0;
+}
+.dx_english .px_layer .zw{
+    position: absolute;
+    top: 160px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    font-size: 36px;
+    overflow: hidden;
+    padding: 15px;
+
+}
+
+.dx_english .px_layer .px_word {
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    margin-left: -222px;
+    margin-top: 60px;
+    width: 475px;
+}
+.dx_english .px_layer .px_word li{
+    font-size: 42px;
+     width: 60px;
+    height: 60px;
+    border: 2px solid rgb(235,240,184);
+    float: left;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 35px;
+    margin-bottom: 35px;
+    color: black;
+    background: white;
+}
+
+.dx_english .px_layer .px_word li.act{
+    background: none;
+    color: white;
+}
+
+.dx_english .px_layer .english_word{
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+
+}
+
+
+.dx_english .px_layer .english_word li{
+    font-size: 46px;
+    width: 30px;
+    height: 60px;
+    float: left;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.dx_english .px_layer div.dy{
+    font-size: 36px;
+    margin-top: 50px;
+    color: #ff5968;
+    text-align: center;
+}
+.dx_english .show_px_layer{
+    width: 100px;
+    height: 50px;
+    border: solid 1px #000;
+    border-radius: 30px;
+    position: absolute;
+    right:  35px;
+    top:  115px;
+    z-index: 999;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    background: #eeaa70;
+}
