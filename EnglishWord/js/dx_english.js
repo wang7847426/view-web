@@ -157,13 +157,7 @@ $(function(){
 
     }
   }
-
-  twentieth twelfth student term trip busy art festival dear
-  twentieth twelfth student term trip busy art festival dear   
-
-
-
-
+  
   var dx = new dxFun();
   dx.init();
 })
