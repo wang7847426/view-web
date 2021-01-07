@@ -22,9 +22,8 @@ $(function(){
       var _this= this;
       $.ajax({
         type: "get",
-
         datatype: "json",
-        url: "../json/word.json",
+        url: "https://wang7847426.github.io/view-web/EnglishWord/json/word.json",
         success: function(data){
             var str = ""
             data.forEach((val,index)=>{
@@ -157,7 +156,7 @@ $(function(){
 
     }
   }
-  
+
   var dx = new dxFun();
   dx.init();
 })
