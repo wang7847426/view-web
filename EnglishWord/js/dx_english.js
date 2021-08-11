@@ -68,7 +68,6 @@ $(function(){
         }
         ywArrIndex.push(rand);
       }
-
       for(var j = 0; ; j++){
         if(ywArrIndex.length < newYwArr.length){
          generateRandom(newYwArr.length)
@@ -105,19 +104,9 @@ $(function(){
       }
       document.querySelector(".px_word").onclick = function(ev){  
         if(ev.target.localName == "li"){
-
-          eleLi = ev.target;
-          if(eleLi.className == "act"){
-            pxWord.splice(eleLi.getAttribute("data-index"), 1,"_");
-            eleLi.className = "";
-            eleLi.setAttribute("data-index","");
-            clickIndex--;
-          } else{
-            if(pxWord.indexOf("_") == -1){
               pxWord.push(ev.target.innerHTML);
               eleLi.className = "act";
               eleLi.setAttribute("data-index",clickIndex)
-
             }else{
               eleLi.setAttribute("data-index",pxWord.indexOf("_"));
               pxWord.splice(pxWord.indexOf("_"), 1, ev.target.innerHTML);
@@ -136,21 +125,13 @@ $(function(){
           $(".english_word").html(str);
 
           if(pxWord.length >= ywStr.length){
-
-
             if(pxWord.join("") === ywStr){
               console.log("拼写正确");
             }else{
               console.log(pxWord.join(""));
               console.log("拼写不正确");
-
-            };
-
-
+            }
           }
-
-        
-
         }
       }
 
