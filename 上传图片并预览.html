@@ -140,7 +140,10 @@
                     alert('请上传图片文件！');
                 }
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> origin/dev
           }
             /*思路：
              *1.熟悉文件拖拽  目标元素 的四个事件,注意:ondragover、ondrop事件中阻止默认行为
@@ -184,7 +187,11 @@
               var index = $(this).parent("li").index();
               imgArr.splice(index, 1)
               $(this).parent('li').remove();
+<<<<<<< HEAD
             })//、读取成功之后触发的事件：onload事件等，this.result为读取到的数据
+=======
+            })
+>>>>>>> origin/dev
 
              // ajax 向服务器发送图片 
             $(".btn").on("click",function(){
@@ -193,7 +200,10 @@
                 formFile.append('myFile[]', file);
                 formFile.append('num', i);
               });
+<<<<<<< HEAD
               
+=======
+>>>>>>> origin/dev
               console.log("上传成功")
             })
         });
