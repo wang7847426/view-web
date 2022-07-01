@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="" href="./index.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+          *{margin: 0;padding: 0;}
+          li{list-style: none}
+          .wrapper{width: 1200px;margin: 0 auto;}
+          .wrapper div{margin-bottom: 50px}
+          .red{height: 500px;background: red}
+          .yellow {height: 700px;background: yellow}
+          .blue{height: 300px;background: blue}
+          .pink {height: 200px;background: pink}
+          .brown {height: 1000px;background: brown}
+          .purple {height: 800px;background: purple}
+          .nav_list{position: fixed;top: 200px;left: 200px;display: none}
+          .nav_list li{width: 75px;height: 50px;line-height: 50px;text-align: center;}
+          .nav_list li.act{background: #000;color: azure;}
+          .header{height: 200px;background: #000;margin-bottom: 20px}
+    </style>
+</head>
+<body>
+     <div class="header"></div>
+     <div class="wrapper">
+          <div class="red"></div>
+          <div class="yellow"></div>
+          <div class="blue"></div>
+          <div class="pink"></div>
+          <div class="brown"></div>
+          <div class="purple"></div>
+     </div>
+     <ul class="nav_list">
+          <li class="nav_1 act">111</li>
+          <li class="nav_2">222</li>
+          <li class="nav_3">333</li>
+          <li class="nav_4">444</li>
+          <li class="nav_5">555</li>
+          <li class="nav_6">666</li>
+     </ul>
+    <script>
+          var lock = true;
+          $('.nav_list li').on("click",function(){
+               lock = false;
+               var offsetTop = $('.wrapper div').eq($(this).index()).offset().top;
+               $("html, body").stop().animate({
+                    scrollTop: offsetTop
+               },function(){
+                  lock =true;  
+               });
+               $(this).addClass("act").siblings().removeClass("act");
+          });
+          $(window).on('scroll',function(){
+               IsShowNavList();
+               if(lock){
+                    $('.wrapper div').each(function(i,ele){
+                         if($(document).scrollTop() >= $(ele).offset().top && $(document).scrollTop() <= $(ele).offset().top + $(ele).height()){
+                              $(".nav_list li").eq(i).addClass("act").siblings().removeClass("act");
+                         }
+                    });
+              }
+          })
+          var headerHeight = $(".header").height();
+          function IsShowNavList(){
+               if($(document).scrollTop()>= headerHeight){
+                    $(".nav_list").fadeIn();
+               }else{
+                    $(".nav_list").fadeOut();
+               }
+          }
+          IsShowNavList();
+    </script>
+</body>
+</html>

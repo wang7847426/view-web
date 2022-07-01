@@ -3,190 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-    <style>
-    /* 全局样式 */
-    :root {
-      --rocket-size: 30px;
-      --sky-color: #1C1740;
-      --rocket-color: #F9E2FE;
-      --rocket-cap-color: crimson;
-      --rocket-logo-color: #4C3198;
-      --rocket-wing-color: #4C3198;
-      --rocket-booster-color: #C38382;
-    }
-
-    /* 容器居中 */
-    .up_btn {
-      position: absolute;
-      bottom: 50px;
-      right: 50px;
-    }
-
-    /* 火箭三列水平布局 */
-    .rocket {
-      display: flex;
-    }
-
-    /* 火箭三列通用样式 */
-    .rocket .body {
-        position: relative;
-        background-color: var(--rocket-color);
-        border-radius: 0 0 50% 50% / 76% 76% 15% 15%; 
-    }
-
-    /* 火箭中列宽高 */
-    .rocket .main {
-        width: var(--rocket-size);
-        height: calc(var(--rocket-size) * 1.5);
-    }
-
-    /* 火箭边列宽高 */
-    .rocket .side {
-        width: calc(var(--rocket-size) / 3);
-        height: var(--rocket-size);
-    }
-
-    /* 火箭左列位置 */
-    .rocket .left {
-      margin-right: 5px;
-    }
-
-    /* 火箭右列位置 */
-    .rocket .right {
-      margin-left: 5px;
-    }
-
-    /*   为左中右三列的突出部都添加好圆角 */
-    .rocket .body:before {
-        content: '';
-        position: absolute;
-        border-radius: 50% 50% 50% 50% / 76% 76% 25% 25%;
-    }
-
-    /*   火箭主体突出部的大小、位置 */
-    .rocket .main:before {
-        bottom: 80%;
-        width: 100%;
-        height: 75%;
-        background-color: inherit;
-    }
-
-    /*   火箭左右列突出部的大小、位置及颜色 */
-    .rocket .side:before {
-        bottom: 90%;
-        width: 100%;
-        height: 35%;
-        background-color: var(--rocket-cap-color);
-    }
-
-
-    /*  logo 的具体位置及样式 */
-    .rocket .main:after {
-        content: '';
-        position: absolute;
-        bottom: 75%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        border: calc(var(--rocket-size) / 15) solid var(--rocket-logo-color);
-        width: calc(var(--rocket-size) / 1.8);
-        
-        height: calc(var(--rocket-size) / 1.8);
-        box-shadow: inset rgba(0, 0, 0, 0.075) -2vw -2vw 0 0, inset rgba(0, 0, 0, 0.1) -1vw -1.5vw 0 0;
-        border-radius: 100%;
-    }
-
-    /* 火箭左右两栏回到正确位置 */
-    .rocket .left {
-    /*   margin-right: 10px; */
-      left: 1px;
-    }
-
-    .rocket .right {
-    /*   margin-left: 10px; */
-      right: 1px;
-    }
-
-    /*  火箭翅膀的样式  */
-    .rocket .wing {
-      position: absolute;
-      bottom: 2vmin;
-      background-color: var(--rocket-wing-color);
-      width: calc(var(--rocket-size) / 2);
-      height: calc(var(--rocket-size) / 1.5);
-      z-index: 1;
-      box-shadow: inset rgba(0, 0, 0, 0.1) -0.5vmin 1vmin 1vmin 0, inset rgba(255, 255, 255, 0.1) 0.5vmin 1vmin 1vmin 0;
-    }
-
-    /*  火箭左翅膀位置  */
-    .rocket .wing.leftWing {
-        right: 100%;
-        border-radius: 100% 0 10% 10%;
-    }
-
-    /*  火箭右翅膀位置  */
-    .rocket .wing.rightWing {
-        left: 100%;
-        border-radius: 0 100% 10% 10%;
-    }
-
-    /* 助推器样式及位置 */
-    .rocket .booster {
-      position: absolute;
-      top: 80%;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: calc(var(--rocket-size) / 1.2);
-      height: calc(var(--rocket-size) / 2.5);
-      background-color: var(--rocket-booster-color);
-      border-radius: 0 0 50% 50% / 76% 76% 35% 35%;
-      z-index: -1;
-      box-shadow: inset rgba(0, 0, 0, 0.3) -0.5vmin 1vmin 1vmin 0, inset rgba(255, 255, 255, 0.3) 0.5vmin 1vmin 1vmin 0, black 0 0 2vmin;
-    }
-
-    /* 火焰样式及动画 */
-    .rocket .fire {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: calc(var(--rocket-size) / 1.4);
-      height: 80%;
-      border-radius: 0 0 100% 100%;
-      background-image: linear-gradient(to bottom, yellow, transparent 90%);
-      z-index: -2;
-      transform-origin: 50% 0;
-    
-    }
-    .rocket:hover .fire{
-      animation: fire 0.1s linear alternate infinite;
-    }
-
-    @keyframes fire {
-        to {
-            transform: scaleX(0.85) translateY(-1vmin);
-        }
-    }
-
-  </style>
 </head>
 <body>
-    <a href="http://www.baidu.com">百度</a>
-    <a href="http://www.xbiao.com" target="_blank">腕表</a>
-    <div class="up_btn">
-    <div class="rocket">
-      <div class="body side left"></div>
-      <div class="body main">
-        <div class="wing leftWing"></div>
-        <div class="wing rightWing"></div>
-        <div class="booster"></div>
-        <div class="fire"></div>
-      </div>
-      <div class="body side right"></div>
-      
-    </div>
-  </div>
+  <form action="">
+    <input type="file" id="inputFile">
+    <input type="text" name="name" id="name">
+  
+  </form>
+    <button id="btn">按钮</button>
+  <script>
+      const list = [{age:18,name:'张三'},{age:18,name:'李四'},{age:18,name:'王五'}]
+      let hash = {};
+      const newArr = list.reduce((item, next) => {
+          // console.log(item);
+          // console.log(next);
+          hash[next.age] ? '' : hash[next.age] = true && item.push(next);
+          console.log(hash[next.age]);
+          return item;
+      }, []);
+      console.log(hash);
+  </script>
+
 </body>
 </html>
