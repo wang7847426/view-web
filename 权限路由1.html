@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app{
+            margin-top: 25px;
+        }
+        .app > div{
+            margin-left: 15px;
+        }
+        .app > div > div{
+            margin-left: 15px;
+        }
+        .app > div > div > div{
+            margin-left: 15px;
+        }
+        .app > div > div > div > div{
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>后台返回用户权限路由信息，前端把路由信息弄成树形结构</h1>
+    <div>
+        视频连接：<a target="_block" href="https://www.bilibili.com/video/BV11A411J7z5?p=5&vd_source=a2fe83e6e75cc5d90325e6074a1793db" >连接</a>
+    </div>
+    <div class="app"></div>
+    <script>
+            const uid = 3;
+
+            const userList = [
+                {id: 1,name: "zhangsan",auth: [2, 5, 6]},
+                {id: 2,name: "lisi",auth: [2, 3, 5, 6]},
+                {id: 3,name: "wangwu",auth: [2, 3, 4, 5, 6, 7, 8, 9]}
+            ];
+            const routeList = [
+                {id: 2,pid: 0,message: "我是一级元素"},
+                {id: 3,pid: 2,message: "我是二级元素"},
+                {id: 4,pid: 3,message: "我是三级元素"}, 
+                {id: 5,pid: 0,message: "我是一级元素"},
+                {id: 6,pid: 5,message: "我是二级元素"},
+                {id: 7,pid: 0,message: "我是一级元素"},
+                {id: 8,pid: 7,message: "我是二级元素"},
+                {id: 9,pid: 7,message: "我是二级元素"}
+            ];
+
+            // 从 userList 中获取当前用户信息 
+            const userInfo = userList.filter(user => uid == user.id)[0];
+
+            //  获取用户的权限路由
+            const userAuthRoutes = (function (userInfo, route) {
+                let userAuthRoutes = [];
+                userInfo.auth.map(u => {
+                    route.map(r => {
+                        u === r.id && userAuthRoutes.push(r);
+                    })
+                });
+                return userAuthRoutes;
+            })(userInfo, routeList);
+
+            //  获取新的树状路由
+            const newRoutes = (function (userAuthRoutes) {
+                const parent = userAuthRoutes.filter(pId => pId.pid === 0),
+                    children = userAuthRoutes.filter(cId => cId.pid !== 0);
+
+                /* 核心代码 */
+                utilsFun(parent, children)
+                function utilsFun(parent, children) {
+                    parent.map(p => {
+                        children.map((c, i) => {
+                            if (p.id === c.pid) {
+                                // 拷贝一份子孙的路由
+                                const _c = JSON.parse(JSON.stringify(children));
+                                // 删除子孙路由中的本次路由
+                                _c.splice(i, 1);
+                                //  递归方法
+                                utilsFun([c], _c);
+
+                                if (p.children) {
+                                    p.children.push(c)
+                                } else {
+                                    p.children = [c];
+                                }
+                            };
+                        });
+                    });
+                }
+                /* 核心代码 */
+                return parent;
+            })(userAuthRoutes);
+
+            // 渲染元素
+            (function ele(newRou, app) {
+                newRou.map(nr => {
+                    let div = document.createElement('div');
+                    div.innerHTML = `${nr.message}`;
+                    app.appendChild(div);
+                    nr['children'] != undefined && ele(nr.children, div);
+                })
+            })(newRoutes, document.querySelector(".app"));
+    </script>
+</body>
+</html>
