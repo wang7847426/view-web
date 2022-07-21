@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./js/jquery.js"></script>
+    <script src="../lib/jquery.js"></script>
     <style>
           *{margin: 0;padding: 0;}
           li{list-style: none}
@@ -17,7 +17,7 @@
           .pink {height: 200px;background: pink}
           .brown {height: 1000px;background: brown}
           .purple {height: 800px;background: purple}
-          .nav_list{position: fixed;top: 200px;left: 200px;display: none}
+          .nav_list{position: fixed;top: 200px;left: 200px;display: none;background: #ccc;}
           .nav_list li{width: 75px;height: 50px;line-height: 50px;text-align: center;}
           .nav_list li.act{background: #000;color: azure;}
           .header{height: 200px;background: #000;margin-bottom: 20px}
@@ -72,6 +72,17 @@
                }
           }
           IsShowNavList();
+
+          //  屏幕在 小于 1755 的情况， nav_list 消失
+          function screenWight(params) {
+               var winWidth = $(window).width();
+               console.log(winWidth)
+               if(winWidth > 1755){
+                    $(".nav_list").fadeOut()
+               }
+          }
+          screenWight()
+          $(window).on("resize", screenWight)
     </script>
 </body>
 </html>

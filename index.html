@@ -4,31 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>首页</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .wrapper{width: 1200px;margin: 0 auto;}
+        .wrapper > div{margin-bottom: 20px;}
+        h2{margin-bottom: 15px; }
+        dl{margin-bottom: 10px;overflow: hidden;}
+        dt{font-size: 16px; overflow: hidden; font-weight: 700;}
+        dd{float: left;margin: 5px 15px;}
+    </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="css_box">
             <h2>CSS</h2>
-            <div>
-                <h3>动画相关</h3>
-            </div>
-            <div>
-                <h3>逻辑相关</h3>
-                <a href="./css/luoji/rem的页面.html"></a>
-            </div>
+            <dl>
+                <dt>动画相关</dt>
+            </dl>
+            <dl>
+                <dt>逻辑相关</dt>
+                <dd><a target="_block" href="./css/luoji/rem的页面.html">rem的页面</a></dd>
+            </dl>
         </div>
         <div class="js_box">
             <h2>JS</h2>
-            <div>
-                <h3>动画相关</h3>
-                <a href="./js/donghua/导航电梯.html"></a>
-            </div>
-            <div>
-                <h3>逻辑相关</h3>
-                <a href="./js/luoji/数组去重.html"></a>
-                <a href="./js/luoji/权限路由1.html"></a>
-            </div>
+            <dl>
+                <dt>动画相关</dt>
+                <dd><a target="_block"  href="./js/donghua/导航电梯.html">导航电梯</a></dd>
+            </dl>
+            <dl>
+                <dt>逻辑相关</dt>
+                <dd><a target="_block"  href="./js/luoji/数组去重.html">数组去重</a></dd>
+                <dd><a target="_block"  href="./js/luoji/权限路由1.html">权限路由1</a></dd>
+            </dl>
         </div>
     </div>
 </body>
