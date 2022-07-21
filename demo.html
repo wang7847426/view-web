@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试demo</title>
+</head>
+<body>
+    <script>
+        const obj = {a:1};
+        var arr = [1,2,obj,4,5,6,7,8,9];
+        arr.map((item,index,arr)=>{
+            if(index == 2){
+                console.log(item);
+                item['b'] = 999
+            }
+        },this);
+        console.log(arr);
+        /*
+
+
+            justify-content： 主轴上的对齐方式
+            align-items：     交叉轴上的的对齐方式
+            flex-direction：  主轴的方向
+            flex-wrap：       换行方式
+            flex-flow：       主轴的方向 | 换行方式
+            align-content：   多条主轴的对齐方式
+
+            order：           排列顺序
+            flex-grow：       放大比例
+            flex-shrink：     缩小比例
+            flex-basis：      元素的本身大小
+            flex：            方法比例 | 缩小比例 | 元素的本身大小
+            align-self：      设置元素本身在交叉轴的对齐方式
+
+        */ 
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            width: 1rem;
+            height: 1rem;
+            background: red;
+        }
+    </style>
+    <!-- 
+        css: 方法1  通过 media 方式写在一个css里面  也可以 结合 less| scss 使用
+        375 屏幕下 1rem = 25px；
+    -->
+    <!-- 
+        <style>
+            @media screen and (min-width: 320px) {html {font-size: 21.33333333px;}}
+            @media screen and (min-width: 360px) {html {font-size: 24px;}}
+            @media screen and (min-width: 375px) {html {font-size: 25px;}}
+            @media screen and (min-width: 384px) {html {font-size: 25.6px;}}
+            @media screen and (min-width: 400px) {html {font-size: 26.66666667px;}}
+            @media screen and (min-width: 414px) {html {font-size: 27.6px;}}
+            @media screen and (min-width: 424px) {html {font-size: 28.26666667px;}}
+            @media screen and (min-width: 480px) {html {font-size: 32px;}}
+            @media screen and (min-width: 540px) {html {font-size: 36px;}}
+            @media screen and (min-width: 720px) {html {font-size: 48px;}}
+            @media screen and (min-width: 750px) {html {font-size: 50px;}}
+        </style> 
+    -->
+
+
+    <!-- 
+        css: 方法2  使用 26.667vw; 
+        375 屏幕下 1rem = 100px;
+    -->
+    <!--
+        <style>
+            html{
+                font-size: 26.667vw;
+            }
+        </style> 
+    -->
+
+    <!-- 
+        css: 方法3  link + media 需要写多个css ; 
+        375 屏幕下 1rem = 100px;
+    -->
+    <!-- <link rel="stylesheet" href="./style780.css" media=" screen and (min-width:780px)"> -->
+
+</head>
+<body>
+    <div class="box">
+        
+    </div>
+
+    <script>
+        /*
+            **********************
+            *****  推荐使用： ***** 
+            **********************
+            
+            js 方法： 使用淘宝的 flexible.js 
+            375 屏幕下 1rem = 25px;
+        */ 
+
+            (function flexible(window, document) {//首先是一个立即执行函数，执行的时候传入参数window,document
+                var docEl = document.documentElement //返回文档的root元素，即根元素html
+                var dpr = window.devicePixelRatio || 1 //获取设备的dpr，即当前设置下物理像素与虚拟像素的比值
+
+                //调整body标签的fontSize
+                //设置默认字体的大小，默认字体的大小继承自body
+                function setBodyFontSize() {
+                    if (document.body) {
+                        document.body.style.fontSize = (12 * dpr) + 'px'
+                    } else {
+                        document.addEventListener('DOMContentLoaded', setBodyFontSize)
+                    }
+                }
+                setBodyFontSize();
+
+                //设置 1rem = viewWidth / 15
+                function setRemUnit() {
+                    var rem = docEl.clientWidth / 15
+                    docEl.style.fontSize = rem + 'px'
+                }
+
+                setRemUnit();
+
+                //在页面resize或者pageshow重新设置rem
+                window.addEventListener('resize', setRemUnit)
+                window.addEventListener('pageshow', function (e) {
+                    if (e.persisted) {//某些浏览器，重新展示页面时，走的是页面展示缓存
+                        setRemUnit();
+                    }
+                })
+
+                //检测0.5px的支持，支持则root元素的class有hairlines
+                //解决1px在高清屏多像素问题
+                if (dpr >= 2) {
+                    var fakeBody = document.createElement('doby');
+                    var testElement = document.createElement('div');
+                    testElement.style.border = '.5px solid transparent'
+                    fakeBody.appendChild(testElement);
+                    docEl.appendChild(fakeBody);
+                    if (testElement.offsetHeight === 1) {
+                        docEl.classList.add('hairlines')
+                    }
+                    docEl.removeChild(fakeBody)
+                }
+            }(window, document))
+    </script>
+</body>
+</html>

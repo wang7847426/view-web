@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的页面</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        // new Set方法
+        function unique(array) {
+            return Array.from(new Set(array));
+        }
+        console.log('new Set方法:');
+        console.log(unique(arr)); 
+        //[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}, {}]
+        // {} 没有去重
+
+        //  splice 方法
+        function unique1(array) {
+            for (var i = 0; i < array.length; i++) {
+                for (var j = i + 1; j < array.length; j++) {
+                    if (array[i] == array[j]) {
+                        array.splice(j, 1);
+                        j--;
+                    }
+                }
+            }
+            return array;
+        }
+        console.log('splice方法:');
+        console.log(unique1(arr)); 
+        //[1, "true", 15, false, undefined, NaN, NaN, "NaN", "a", {…}, {…}]     
+        //NaN和{}没有去重，两个null直接消失了
+
+        //  indexOf 方法
+        function unique2(array) {
+            if (!Array.isArray(array)) {
+                console.log("不是数组！！");
+                return;
+            };
+
+            var arr1 = [];
+            for (var i = 0; i < array.length; i++) {
+                if (arr1.indexOf(array[i]) === -1) {
+                    arr1.push(array[i]);
+                };
+            };
+
+            return arr1;
+        };
+        console.log('indexOf方法:');
+        console.log(unique2(arr));  
+        // [1, "true", true, 15, false, undefined, null, NaN, NaN, "NaN", 0, "a", {…}, {…}]  
+        //NaN、{}没有去重
+
+        function unique3(array) {
+            if (!Array.isArray(array)) {
+                console.log("不是数组！！");
+                return;
+            };
+
+            var arr1 = [];
+            for (var i = 0; i < array.length; i++) {
+                if (!arr1.includes(array[i])) {
+                    arr1.push(array[i]);
+                }
+            }
+            return arr1;
+        }
+        console.log('includes方法:');
+        console.log(unique3(arr));
+        //[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {…}, {…}]     
+        //{}没有去重
+
+        //  总结：那种方法都不能去除对象的重复
+    </script>
+</body>
+
+</html>
