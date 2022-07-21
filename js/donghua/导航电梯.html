@@ -17,12 +17,12 @@
           .pink {height: 200px;background: pink}
           .brown {height: 1000px;background: brown}
           .purple {height: 800px;background: purple}
-          .nav_list{position: fixed;top: 200px;left: 200px;display: none;background: #ccc;}
+          .nav_list{position: fixed;top: 60px;left: 200px;display: none;background: #ccc;}
           .nav_list.hide{display: none !important;}
           .nav_list li{width: 75px;height: 50px;line-height: 50px;text-align: center;}
           .nav_list li.act{background: #000;color: azure;}
-          .header{height: 200px;background: #000;margin-bottom: 20px}
-
+          .header{height: 60px;background: #000;margin-bottom: 20px}
+          .footer{height: 150px;background: #000;margin-bottom: 20px}
     </style>
 </head>
 <body>
@@ -43,50 +43,67 @@
           <li class="nav_5">555</li>
           <li class="nav_6">666</li>
      </ul>
+     <div class="footer"></div>
     <script>
-          var lock = true;
-          $('.nav_list li').on("click",function(){
-               lock = false;
-               var offsetTop = $('.wrapper div').eq($(this).index()).offset().top;
-               $("html, body").stop().animate({
-                    scrollTop: offsetTop
-               },function(){
-                  lock =true;  
-               });
-               $(this).addClass("act").siblings().removeClass("act");
-          });
-          $(window).on('scroll',function(){
-               IsShowNavList();
-               if(lock){
-                    $('.wrapper div').each(function(i,ele){
-                         if($(document).scrollTop() >= $(ele).offset().top && $(document).scrollTop() <= $(ele).offset().top + $(ele).height()){
-                              $(".nav_list li").eq(i).addClass("act").siblings().removeClass("act");
-                         }
+          (function(opts){
+               const headerBox = opts.headerBox;
+               const navList = opts.navList;
+               const navListItems = opts.navListItems;
+               const wrapDiv = opts.wrapDiv;
+               const minWidth = opts.minWidth;
+               let lock = true;
+               
+               navListItems.on("click", function () {
+                    console.log(11);
+                    lock = false;
+                    var offsetTop = wrapDiv.eq($(this).index()).offset().top;
+                    $("html, body").stop().animate({
+                         scrollTop: offsetTop
+                    }, function () {
+                         lock = true;
                     });
-              }
-          })
-          var headerHeight = $(".header").height();
-          function IsShowNavList(){
-               if($(document).scrollTop()>= headerHeight){
-                    $(".nav_list").fadeIn();
-               }else{
-                    $(".nav_list").fadeOut();
-               }
-          }
-          IsShowNavList();
+                    $(this).addClass("act").siblings().removeClass("act");
+               });
 
-          //  屏幕在 小于 1755 的情况， nav_list 消失
-          function screenWight(params) {
-               var winWidth = $(window).width();
-               console.log(winWidth)
-               if(winWidth <= 1755){
-                    $(".nav_list").addClass("hide");
-               }else{
-                    $(".nav_list").removeClass("hide");
+               $(window).on('scroll', function () {
+                    IsShowNavList();
+                    if (lock) {
+                         wrapDiv.each(function (i, ele) {
+                              if ($(document).scrollTop() >= $(ele).offset().top && $(document).scrollTop() <= $(ele).offset().top + $(ele).height()) {
+                                   navListItems.eq(i).addClass("act").siblings().removeClass("act");
+                              }
+                         });
+                    }
+               })
+               var headerHeight = headerBox.height();
+               console.log(headerHeight);
+               function IsShowNavList() {
+                    if ($(document).scrollTop() >= headerHeight) {
+                         navList.fadeIn();
+                    } else {
+                         navList.fadeOut();
+                    }
                }
-          }
-          screenWight()
-          $(window).on("resize", screenWight)
-    </script>
+               IsShowNavList();
+
+               function screenWight(params) {
+                    var winWidth = $(window).width();
+                    console.log(winWidth)
+                    if (winWidth <= minWidth) {
+                         navList.addClass("hide");
+                    } else {
+                         navList.removeClass('hide');
+                    }
+               }
+               screenWight()
+               $(window).on("resize", screenWight)  
+          })({
+               headerBox:  $(".header"),
+               navList: $('.nav_list'),
+               navListItems: $('.nav_list li'),
+               wrapDiv:  $('.wrapper div'),
+               minWidth: 1755
+          })
+     </script>
 </body>
 </html>

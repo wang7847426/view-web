@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // Dep 
+        const Dep = {
+            map:{},
+            collect(eventName,fn){
+                if(!this.map[eventName]){
+                    this.map[eventName] = [];
+                }
+                this.map[eventName].push(fn);
+            },
+            trigger(){
+                const _this = this;
+                const eventName = Array.prototype.shift.call(arguments);
+                    argus = arguments;
+                this.map[eventName].forEach(function(fn){
+                    return fn.apply(_this, argus);
+                });
+            }
+        }
+
+        Dep.collect('cp', function(){
+            console.log(1111)
+        });
+
+        Dep.collect('cp', function () {
+            console.log(2222)
+        });
+
+        Dep.collect('sa', function(){
+            console.log(arguments[0])
+        });
+
+        Dep.trigger('cp');
+        Dep.trigger('sa', "小明");
+
+    </script>
+</body>
+</html>
