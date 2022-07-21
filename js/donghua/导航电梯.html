@@ -18,9 +18,11 @@
           .brown {height: 1000px;background: brown}
           .purple {height: 800px;background: purple}
           .nav_list{position: fixed;top: 200px;left: 200px;display: none;background: #ccc;}
+          .nav_list.hide{display: none !important;}
           .nav_list li{width: 75px;height: 50px;line-height: 50px;text-align: center;}
           .nav_list li.act{background: #000;color: azure;}
           .header{height: 200px;background: #000;margin-bottom: 20px}
+
     </style>
 </head>
 <body>
@@ -77,8 +79,10 @@
           function screenWight(params) {
                var winWidth = $(window).width();
                console.log(winWidth)
-               if(winWidth > 1755){
-                    $(".nav_list").fadeOut()
+               if(winWidth <= 1755){
+                    $(".nav_list").addClass("hide");
+               }else{
+                    $(".nav_list").removeClass("hide");
                }
           }
           screenWight()
