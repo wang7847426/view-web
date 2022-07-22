@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="app">
+    <p v-text="name" id="pid"></p>
+    <p v-text="age"></p>
+    <input type="text" v-model="name">
+    <input type="text" v-model="age">
+
+    <input type="text" v-model="childName">
+
+
+</div>
+<body>
+    <script>
+        //  目前只支持一层数据 
+        const data = {
+            name: "小明",
+            age: 28,
+        }
+        // Dep 
+        const Dep = {
+            map:{},
+            collect(eventName,fn){
+                if(!this.map[eventName]){
+                    this.map[eventName] = [];
+                }
+                this.map[eventName].push(fn);
+            },
+            trigger(){
+                const _this = this;
+                const eventName = Array.prototype.shift.call(arguments);
+                    argus = arguments;
+                this.map[eventName].forEach(function(fn){
+                    return fn.apply(_this, argus);
+                });
+            }
+        }
+        //  遍历 data 中的属性， 然后绑定 defineProperty
+        function Observer(data){
+            Object.keys(data).forEach((item,index) => {
+                //if(typeof data[item] == 'object') return Observer(data[item]);
+                defineProperty(data, item, data[item]);
+            })
+        }
+        Observer(data);
+        function defineProperty(data, key, value){
+            Object.defineProperty(data, key, {
+                get(){
+                    console.log("触发了Get,值为："+ value);
+                    return value;
+                },
+                set(newVla){
+                    console.log("触发了Set,新值为：" + newVla);
+                    value = newVla;
+                    // compile();
+                    //  同过 key 调用 依次收集来的函数
+                    Dep.trigger(key);
+                }
+            })
+        }
+        function compile() {
+            const app = document.querySelector("#app");
+            const childNodes = app.childNodes;
+            childNodes.forEach((node)=>{
+                if(node.nodeType === 1){
+                    const attrs = node.attributes;
+                    Array.from(attrs).forEach(attr => {
+                        const nodeName =  attr.nodeName;
+                        const nodeValue = attr.nodeValue;
+                        //  判断指令 
+                        if(nodeName === "v-text"){
+                            node.innerHTML = data[nodeValue];
+                            //  Dep 收集函数 
+                            Dep.collect(nodeValue, () => {
+                                node.innerHTML = data[nodeValue];
+                            });
+                        }
+                        if (nodeName === "v-model") {
+                            node.value = data[nodeValue];
+                            const handler = (e) => {
+                                const newVal = e.target.value;
+                                data[nodeValue] = newVal;
+                            };
+                            node.addEventListener('input', handler)
+                            // Dep 收集函数 
+                            Dep.collect(nodeValue, () => {
+                                node.value = data[nodeValue];
+                            });
+                        }
+                    })
+                }
+            })
+        }
+        compile();
+    </script>
+</body>
+</html>
