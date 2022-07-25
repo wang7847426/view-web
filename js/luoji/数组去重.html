@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        const arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
         // new Set方法
         function unique(array) {
             return Array.from(new Set(array));
@@ -78,6 +78,59 @@
         //{}没有去重
 
         //  总结：那种方法都不能去除对象的重复
+
+        console.log("******************数组对象去重**************************");
+        const arrObj = [
+            { key: '01', value: '西施' },
+            { key: '02', value: '王昭君' },
+            { key: '03', value: '杨玉环' },
+            { key: '04', value: '貂蝉' },
+            { key: '01', value: '西施' },
+            { key: '01', value: '西施' }
+        ];
+
+        // 第一种：使用 forEach
+        /*
+        let result = [];
+        let obj = {};
+
+        arrObj.forEach((item, index) => {
+            if (!obj[item.key]) {
+                result.push(item)
+                obj[item.key] = true;
+            }
+        })
+        console.log(result)
+        */
+
+        // 第一种： 使用 reduce 
+        let obj = {};
+        let result = arrObj.reduce((result, item)=>{
+            if(!obj[item.key]){
+                result.push(item);
+                obj[item.key] = true;
+            }
+            return result;
+        },[]);
+
+        console.log(result);
+
+        // 第二种
+        /*
+            let result = [];
+            arrObj.forEach((item)=>{
+            let lock = true;
+            result.forEach((i)=>{
+                if(item.key === i.key){
+                    lock = false;
+                }
+            })
+            if(lock) {
+                result.push(item);
+            }
+            })
+            console.log(result);
+       */
     </script>
 </body>
 

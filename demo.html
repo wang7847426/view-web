@@ -5,36 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>测试demo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 200px;
+            height: 500px;
+            border: 5px red solid;
+            margin: 10px 10px;
+            padding: 10px 10px ;
+            background: blue;
+        }
+        #parent{
+            margin: 100px 500px;
+            width: 200px;
+            height: 200px;
+            overflow-x: hidden;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
+    <div id="parent">
+        <div id="app">
+            <div id="child">
+                
+            </div>
+        </div>
+    </div>
     <script>
-        const obj = {a:1};
-        var arr = [1,2,obj,4,5,6,7,8,9];
-        arr.map((item,index,arr)=>{
-            if(index == 2){
-                console.log(item);
-                item['b'] = 999
+
+        const xml = new XMLHttpRequest();
+        xml.open("GET", "http://192.168.1.49:8080/data/demo1.json");
+        xml.send(null);
+        xml.onreadystatechange = function(){
+            if(xml.readyState == 4 && xml.status == 200){
+                console.log(JSON.parse(xml.responseText))
             }
-        },this);
-        console.log(arr);
-        /*
+        }
+
+        const parent = document.getElementById("parent");
+        const app = document.getElementById("app");
+        const child = document.getElementById("child");
+
+        // client 系列 padding + content
+        console.log("clientWidth: "+ app.clientWidth);
+        console.log("clientHeight: " + app.clientHeight);
+        console.log("clientTop:" + app.clientTop);
+        console.log("clientLeft:" + app.clientLeft);
+
+        console.log("-----------------");
+        
+        // scroll 系列 padding + content
+        console.log("scrollWidth: "+ app.scrollWidth);
+        console.log("scrollHeight: "+ app.scrollHeight);
+        parent.onscroll = function(){
+            console.log("scrollTop:" + parent.scrollTop);
+            console.log("scrollLeft:" + parent.scrollLeft);
+        }
+
+        // offset 系列  padding + border + content
+        console.log("offsetWidth: "+ app.offsetWidth);
+        console.log("offsetHeight: "+ app.offsetHeight);
+        // 要看父元素有没有定位
+        console.log("offsetTop:"+ app.offsetTop);  
+        console.log("offsetLeft:" + app.offsetLeft);
 
 
-            justify-content： 主轴上的对齐方式
-            align-items：     交叉轴上的的对齐方式
-            flex-direction：  主轴的方向
-            flex-wrap：       换行方式
-            flex-flow：       主轴的方向 | 换行方式
-            align-content：   多条主轴的对齐方式
-
-            order：           排列顺序
-            flex-grow：       放大比例
-            flex-shrink：     缩小比例
-            flex-basis：      元素的本身大小
-            flex：            方法比例 | 缩小比例 | 元素的本身大小
-            align-self：      设置元素本身在交叉轴的对齐方式
-
-        */ 
+        var arr = [1,2,3,1,3,1,3,13,21,312,3,1];
+        console.log(arr.every(item => item >= 300));
+        console.log(arr.some(item => item >= 300));
     </script>
 </body>
 </html>
