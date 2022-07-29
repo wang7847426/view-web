@@ -6,72 +6,15 @@
 </head>
 
 <body>
-
+    <div name="name" class="wrapper">11</div>
+    <input type="" name="name" value="">
+    <input type="" name="name" value="">
     <script>
-         var vnode = [{
-                tag: 'ul',
-                props: {
-                    class: 'list'
-                },
-                text: '',
-                children: [
-                    {
-                        tag: "li",
-                        props: {
-                            class: "item",
-                            id: "li_box",
-                            style: "color: red;"
-                        },
-                        text: '',
-                        children: [
-                            {
-                                tag: undefined,
-                                props: {},
-                                text: '牛客网',
-                                children: []
-                            }
-                        ]
-                    },
-                    {
-                        tag: "li",
-                        props: {},
-                        text: '',
-                        children: [
-                            {
-                                tag: undefined,
-                                props: {},
-                                text: 'nowcoder',
-                                children: []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                tag: 'div',
-                props: {
-                    style: 'color: blue;'
-                },
-                text: '我是div',
-                children:[]
-            }
-        ];
-        const _createElm = (vnode, parent) => {
-                vnode.forEach(item =>{
-                    // 补全代码
-                    let ele = document.createElement(item.tag || 'div');
-                    console.log(ele);
-                    for (let key in item.props) {
-                        ele.setAttribute(key, item.props[key]);
-                    }
-                    item.text && ele.append(item.text);
-                    parent.append(ele);
-                    Array.isArray(item.children) && item.children && _createElm(item.children, ele);
-                })
-                
-            }
-            _createElm(vnode,document.body);
+        const divs = document.getElementsByTagName('input');
+        console.log(divs);
+        const wra = document.getElementsByClassName("wrapper");
+        console.log(wra);
+        console.log(document.documentElement)
     </script>
 </body>
-
 </html>
