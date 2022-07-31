@@ -10,14 +10,23 @@
     <input type="" name="name" value="">
     <input type="" name="name" value="">
     <script>
-        const divs = document.getElementsByTagName('input');
-        console.log(divs);
-        const wra = document.getElementsByClassName("wrapper");
-        console.log(wra);
-        console.log(document.documentElement)
-        console.log(111);
+        
+        const arr = [1,2,3,4,5,6,7,8,9];
 
-        console.log(222);
+        // console.log(arr.includes(12))
+        // console.log(arr.includes(2));
+
+        var arr2 = arr.find((val,index, arr)=>{
+            
+            return val >= 3;
+        })
+        var arr3 = arr.find((val,index, arr)=>{
+            
+            return val >= 13;
+        })
+        console.log(arr2);
+        console.log(arr3);
+
     </script>
 </body>
 </html>
