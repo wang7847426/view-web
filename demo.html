@@ -10,23 +10,15 @@
     <input type="" name="name" value="">
     <input type="" name="name" value="">
     <script>
-        
-        const arr = [1,2,3,4,5,6,7,8,9];
+        const arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
 
-        // console.log(arr.includes(12))
-        // console.log(arr.includes(2));
-
-        var arr2 = arr.find((val,index, arr)=>{
-            
-            return val >= 3;
-        })
-        var arr3 = arr.find((val,index, arr)=>{
-            
-            return val >= 13;
-        })
-        console.log(arr2);
-        console.log(arr3);
-
+        let newArr = arr.reduce((initArr, item, index, arr)=>{
+            if(!initArr.includes(item)){
+                initArr.push(item);
+            }
+            return initArr;
+        },[])
+        console.log(newArr);
     </script>
 </body>
 </html>
