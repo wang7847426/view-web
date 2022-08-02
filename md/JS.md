@@ -15,6 +15,8 @@
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
  ```
 
+
+
  #### Array 对象;
  ```javascript{.line-numbers}
     push：向数组末尾添加一个或多个元素，并返回数组的长度；
