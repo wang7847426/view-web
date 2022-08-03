@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-    <div name="name" class="wrapper">11</div>
-    <input type="" name="name" value="">
-    <input type="" name="name" value="">
     <script>
-        
-        const arr = [1,2,3,4,5,6,7,8,9];
-
-        // console.log(arr.includes(12))
-        // console.log(arr.includes(2));
-
-        var arr2 = arr.find((val,index, arr)=>{
-            
-            return val >= 3;
-        })
-        var arr3 = arr.find((val,index, arr)=>{
-            
-            return val >= 13;
-        })
-        console.log(arr2);
-        console.log(arr3);
-
+        var str = 'aaabbbabbbaacccbababababbadddsssscccccc';
+        var obj = {};
+        for(var i = 0; i < str.length; i++){
+            if(!obj[str[i]]){
+               obj[str[i]] = 1;
+            }else{
+                obj[str[i]]++;
+            }
+        }
+        var max = 0,maxKey = "";
+        for(var key in obj){
+            if(max < obj[key]){
+                maxKey = key;
+                max = obj[key];
+            }
+        }
+        console.log(maxKey +":"+ max);
     </script>
 </body>
 </html>
