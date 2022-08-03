@@ -8,7 +8,23 @@
 </head>
 <body>
     <script>
-        
+        var str = 'aaabbbabbbaacccbababababbadddsssscccccc';
+        var obj = {};
+        for(var i = 0; i < str.length; i++){
+            if(!obj[str[i]]){
+               obj[str[i]] = 1;
+            }else{
+                obj[str[i]]++;
+            }
+        }
+        var max = 0,maxKey = "";
+        for(var key in obj){
+            if(max < obj[key]){
+                maxKey = key;
+                max = obj[key];
+            }
+        }
+        console.log(maxKey +":"+ max);
     </script>
 </body>
 </html>
