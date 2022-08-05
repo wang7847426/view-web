@@ -5,26 +5,161 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div[foo]{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        div[foo="bar"]{
+            width: 200px;
+            height: 200px;
+            background: blue;
+            /* visibility: hidden; */
+            opacity: 0;
+        }
+         div[foo*="bar"]{
+            width: 200px;
+            height: 200px;
+            background: rgb(34, 30, 37);
+        }
+
+    </style>
 </head>
+
 <body>
+    <div foo="name">
+        
+    </div>
+    <div foo="age">
+    
+    </div>
+    <div foo="bar">
+    
+    </div>
+    <div foo="bar age name">
+    
+    </div>
+
+
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+
+
+
     <script>
-        var str = 'aaabbbabbbaacccbababababbadddsssscccccc';
-        var obj = {};
-        for(var i = 0; i < str.length; i++){
-            if(!obj[str[i]]){
-               obj[str[i]] = 1;
-            }else{
-                obj[str[i]]++;
-            }
-        }
-        var max = 0,maxKey = "";
-        for(var key in obj){
-            if(max < obj[key]){
-                maxKey = key;
-                max = obj[key];
-            }
-        }
-        console.log(maxKey +":"+ max);
-    </script>
+        // const li = document.querySelectorAll("li");
+        // for(var i = 0; i < li.length; i++){
+        //     (function (i) {
+        //         li[i].onclick = function(){
+        //             console.log(i)
+        //         }
+        //     })(i)
+        // }
+        
+
+        // var str = "2022是最重要的一2年";
+
+        // var index = str.indexOf("最重要");
+
+        // console.log(str.slice(index, index + 3));
+        // console.log(str.substr(index, 3));
+        // console.log(str.substring(index, index + 3))
+
+        // var a = [1,2], b = [3], c = 4;
+        // (function(a,b,c){
+        //     a = []; 
+        //     b[0] = 99;
+        //     c = 999;
+        // })(a,b,c);
+        // console.log(a,b,c)
+
+        // function fn() {
+        //     var a = 0;
+        //     return function(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        // }
+        // var obj = fn();
+        // console.log(obj);
+        // obj();  obj();
+        // var obj2 = fn();
+        // obj2(); obj2();
+
+        // let a = 11;
+        // if(!(a in window)){
+        //     var c = 22;
+        // }
+        // console.log(c);
+
+        // for(var i = 0, j = 0; i < 10, j < 6; i++, j++){
+        //     var k = i + j;
+        // }
+        // console.log(k);
+
+    //   var name = "Tom";
+    //     var obj = { name: "小明" };
+    //     function _console() {
+    //         var name = "Jack";
+    //         return function () {
+    //             console.log(this.name);
+    //         }
+    //     }
+
+    //     _console()();
+    //     _console.call(obj)();
+    //     _console().call(obj);
+        
+
+
+    //  function _console() {
+    //         for (var i = 0; i < 3; i++) {
+    //             setTimeout(function () {
+    //                 console.log(i);
+    //             }, 1000 * i)
+    //         }
+    //     }
+    //     _console();
+
+
+        // function Foo (){
+        //     getName = function(){
+        //         console.log(1);
+        //     }
+        //     return this;
+        // }
+        // Foo.getName = function(){
+        //     console.log(2);
+        // }
+        // Foo.prototype.getName = function(){
+        //     console.log(3);
+        // } 
+        // var getName = function () {
+        //         console.log(4);
+        // }
+
+        // function getName(){
+        //     console.log(5);
+        // } 
+       
+
+        // Foo.getName(); // 2
+        // getName(); // 4
+        // Foo().getName(); // 1
+        // getName();  // 1
+        // new Foo.getName(); // 2
+        // new Foo().getName(); // 3 
+        // new new Foo().getName(); // 3
+
+        // var test = (function(){})(function(){})
+        
+      
+
+
+</script>
 </body>
 </html>

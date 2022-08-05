@@ -43,6 +43,24 @@
     reduce：数组的归并方法;
     find： 函数用来查找目标元素，找到就返回该元素，找不到返回undefined
     findIndex：函数也是查找目标元素，找到就返回元素的位置，找不到就返回-1
- ```
-
+```
+#### String 对象;
+```javascript{.line-numbers}
+   slice：截取字符串中两个指定的索引之间的字符；
+   substr： 指定索引位置截取指定长度的字符串；
+   substring： 截取字符串中两个指定的索引之间的字符；
+   split： 根据指定字符分割字符串，并返回数组；
+   indexOf： 从字符串开头开始查找，并返回下标；
+   lastIndexOf：从字符串结尾开始查找，并返回下标；
+   concat：拼接字符串
+   toString：返回字符串
+   valueOf: 返回字符串对象的原始值；
+   toLocaleLowerCase：根据主机的当前语言环境，把字符转化成小写；
+   toLocaleUpperCase：根据主机的当前语言环境，把字符转化成大写；
+   toLowerCase：把字符转化成小写；
+   toUpperCase：把字符转化成大写；
+   replace：替换正则匹配的字符串；
+   match：根据正则匹配字符串中的字符；
+   search：获取与正则匹配的字符串首次出现的位置；
+```
  
