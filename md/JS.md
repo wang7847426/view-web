@@ -14,9 +14,7 @@
     7. document.querySelector("div") // 通过选择器获取一个元素
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
  ```
-
-
-
+ 
  #### Array 对象;
  ```javascript{.line-numbers}
     push：向数组末尾添加一个或多个元素，并返回数组的长度；
@@ -26,7 +24,7 @@
     splice：从数组中添加或删除元素；
     slice：截取数组的一部分，并返回新的数组；
     reverse：反转数组中元素的顺序；
-    sort： 对数组中的元素进行排序；
+    sort： 对数组中的元素进行排序；即能改变数组又返回数组；
     concat：拼接两个或多个数组，并返回结果；
     join： 将数组拼接成一个字符串；
     isArray： 判断对象是否为数组；
@@ -43,6 +41,27 @@
     reduce：数组的归并方法;
     find： 函数用来查找目标元素，找到就返回该元素，找不到返回undefined
     findIndex：函数也是查找目标元素，找到就返回元素的位置，找不到就返回-1
+```
+#### Array 对象之 sort 方法;
+```javascript{.line-numbers}
+   // 使用 sort 方式对数组中对象进行排序
+   let arr = [ 
+        {name: 'lisi', age: 22},
+        {name: 'zhangsan', age: 10},
+        {name: 'wangwu', age: 33}
+   ];
+
+   let fun = (age) => {
+      return (a,b) => {
+         let val1 = a[age];
+         let vla2 = b[age];
+         return val1 - val2;
+      }
+   }
+
+   let newArr = arr.sort(fun('age'));
+   
+   console.log(newArr);
 ```
 #### String 对象;
 ```javascript{.line-numbers}
@@ -64,3 +83,128 @@
    search：获取与正则匹配的字符串首次出现的位置；
 ```
  
+ ##### JS 继承
+ ```javascript{.line-numbers}
+   /* 
+      1. 原型链继承
+      优点：可以继承父类的属性和方法;
+      缺点：
+         1. 实例对象无法向父类传参
+         2. 父类的引用类型的属性会被子类修改
+   */
+   function Parent(){
+      this.name = "小明";
+      this.say = function(){
+         console.log('我是小明')
+      }
+   }
+   Parent.prototype.eat = function(){
+      console.log('我在吃饭')
+   }
+   function Child(age){
+      this.age = age;
+   }
+   Child.prototype = new Parent()
+   var obj = new Child();
+
+   /* 
+      2. 构造函数继承
+      优点：可以向父类传参，父类的引用类型的属性不会被子类修改
+      缺点：无法继承父类原型上的方法、属性；
+   */
+   function Parent(){
+      this.name = "小明";
+      this.say = function(){
+         console.log('我是小明')
+      }
+   }
+   Parent.prototype.eat = function(){
+      console.log('我在吃饭')
+   }
+   function Child(age){
+      Parent.call(this);
+      this.age = age;
+   }
+   Child.prototype.run = function(){
+      conosle.log('我在跑步')；
+   }
+   let obj = new Child();
+
+   /* 
+      3. 组合式继承
+      优点：可以复用父类，并且可以访问父元素原型上的属性、方法
+      缺点：会调用两次父类的构造函数，子类上会有两份相同的属性、方法
+   */
+   function Parent(){
+      this.name = "小明";
+      this.say = function(){
+         console.log('我是小明')
+      }
+   }
+   Parent.prototype.eat = function(){
+      console.log('我在吃饭')
+   }
+   function Child(age){
+      Parent.call(this);
+      this.age = age;
+   }
+   Child.prototype = new Parent();
+   Child.prototype.run = function(){
+      conosle.log('我在跑步')；
+   }
+   let obj = new Child();
+
+   /* 
+      4. 寄生式继承
+      优点：解决了上面的所有缺点
+      缺点：实现比较复杂
+   */
+   function Parent(){
+      this.name = "小明";
+      this.say = function(){
+         console.log('我是小明')
+      }
+   }
+   function Fun(){}
+   Fun.prototype = Parent.prototype;
+   Parent.prototype.eat = function(){
+      console.log('我在吃饭')
+   }
+   function Child(age){
+      Parent.call(this);
+      this.age = age;
+   }
+   Child.prototype = new Fun();
+   Child.prototype.run = function(){
+      conosle.log('我在跑步')；
+   }
+   let obj = new Child();
+
+   /* 
+      5. ES6 的 extends
+      目前最优的继承
+   */
+   class Parent{
+      construcotr(){
+         this.name = '小明';
+         this.say = function(){
+            console.log('我是小明')
+         }
+      }
+      eat(){
+         console.log('我在吃饭');
+      }
+   }
+   class Child extends Parent {
+      constructor(age){
+         this.age = age;
+      }
+      run(){
+         console.log('我在跑步')
+      }
+   } 
+   let obj = new Child();
+ ```
+
+
+
