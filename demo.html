@@ -20,10 +20,50 @@
 </head>
 
 <body>
-    <div class="box">
-        <div class="box1"></div>
-    </div>
+  
 <script>
+    let arr = [
+        { name: '1', type: '0' },
+        { name: '2', type: '3' },
+        { name: '3', type: '2' },
+        { name: '4', type: '1' },
+        { name: '5', type: '2' },
+        { name: '6', type: '3' },
+        { name: '7', type: '0' }
+    ];
+    // [{type:'0',value:[{ name: '1', type: '0' },{ name: '7', type: '0' }]},{type:'1',value:[{ name: '4', type: '1' }]}]
+    // let newArr = arr.reduce((prevArr, item)=>{
+    //     let lock = true;
+    //     prevArr.forEach( i => {
+    //         if(i.type == item.type){
+    //             i.value.push(item);
+    //             lock = false;
+    //         }
+    //     })
+    //     if(lock){
+    //         prevArr.push({ type: item.type, value: [item] });
+    //     }
+    //     return prevArr;
+    // }, []);
+    // console.log(newArr);
+
+
+    // let obj = {};
+    //     let newArr = arr.reduce((prevArr, item) => {
+    //         if (obj[item.type]) {
+    //             prevArr.forEach(i => {
+    //                 if (i.type == item.type) {
+    //                     i.value.push(item);
+    //                 }
+    //             })
+    //         } else {
+    //             obj[item.type] = true;
+    //             prevArr.push({ type: item.type, value: [item] });
+    //         }
+    //         return prevArr;
+    //     }, []);
+    //     console.log(newArr);
+
 </script>
 </body>
 </html>
