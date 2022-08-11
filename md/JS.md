@@ -1,7 +1,7 @@
 ## Js
 ### Js 基础
 [JS基础](http://c.biancheng.net/view/5351.html)
-#### 1. JS 获取 DOM ?
+##### 1. JS 获取 DOM ?
 ```javascript{.line-numbers}
     1. document.documentElement // 获取 HTML 节点
     2. document.body // 获取 body 节点
@@ -15,7 +15,7 @@
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
  ```
  
- #### Array 对象;
+ ##### Array 对象;
  ```javascript{.line-numbers}
     push：向数组末尾添加一个或多个元素，并返回数组的长度；
     pop： 删除数组最后一个元素， 并返回删除元素；
@@ -42,7 +42,7 @@
     find： 函数用来查找目标元素，找到就返回该元素，找不到返回undefined
     findIndex：函数也是查找目标元素，找到就返回元素的位置，找不到就返回-1
 ```
-#### Array 对象之 sort 方法;
+##### Array 对象之 sort 方法;
 ```javascript{.line-numbers}
    // 使用 sort 方式对数组中对象进行排序
    let arr = [ 
@@ -63,7 +63,7 @@
    
    console.log(newArr);
 ```
-#### String 对象;
+##### String 对象;
 ```javascript{.line-numbers}
    slice：截取字符串中两个指定的索引之间的字符；
    substr： 指定索引位置截取指定长度的字符串；
@@ -185,7 +185,7 @@
       目前最优的继承
    */
    class Parent{
-      construcotr(){
+      constructor(){
          this.name = '小明';
          this.say = function(){
             console.log('我是小明')
@@ -206,5 +206,36 @@
    let obj = new Child();
  ```
 
+### ES6
+##### 1. try、catch、finally
+```javascript{.line-numbers}
+   // 通过 try、catch 捕获异常，使 js 代码继续执行； 
+   try{
+       //尝试执行代码块 ，检查是否有错误的代码块
+      console.log(11);
+      throw new Error("！！错误！！")
+      console.log(22); // 错误以下代码不会被执行；
+   }catch(error){
+      //捕获错误的代码块 ,如果 try 语句发生错误执行的代码块。
+      //                 如果 try 语句没发生错误该代码不会执行。
+      console.log(33);
+      console.log(error.massage);
+      console.log(44);
+   }finally{
+      // 不管是否有错误代码都会执行；
+      console.log(55);
+   }
+   /*
+      总结： 
+      1. catch 用于捕获当前 try 中的抛出的异常，
+         如果 catch 中的抛出的异常，则需要在外层才能捕获； 
+      2. 不管 try 和 catch 的执行情况如何，finally 都会被执行
+         即使其中包含 return 语句；
+      3. try 或者 catch 中 return 的在进入 finally 之前会提前进行缓存，
+         finally 中的执行语句不会改变 return 的值（分为 基本类型和复杂类型），复杂类型的值会被修改；
+      4. 如果 finally 中有 return ，程序会提前退出，
+         返回值不是 try 和 catch 中保存的值； 
+   */
+``` 
 
 

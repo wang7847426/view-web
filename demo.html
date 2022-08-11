@@ -22,48 +22,38 @@
 <body>
   
 <script>
-    let arr = [
-        { name: '1', type: '0' },
-        { name: '2', type: '3' },
-        { name: '3', type: '2' },
-        { name: '4', type: '1' },
-        { name: '5', type: '2' },
-        { name: '6', type: '3' },
-        { name: '7', type: '0' }
-    ];
-    // [{type:'0',value:[{ name: '1', type: '0' },{ name: '7', type: '0' }]},{type:'1',value:[{ name: '4', type: '1' }]}]
-    // let newArr = arr.reduce((prevArr, item)=>{
-    //     let lock = true;
-    //     prevArr.forEach( i => {
-    //         if(i.type == item.type){
-    //             i.value.push(item);
-    //             lock = false;
-    //         }
-    //     })
-    //     if(lock){
-    //         prevArr.push({ type: item.type, value: [item] });
-    //     }
-    //     return prevArr;
-    // }, []);
-    // console.log(newArr);
-
-
-    // let obj = {};
-    //     let newArr = arr.reduce((prevArr, item) => {
-    //         if (obj[item.type]) {
-    //             prevArr.forEach(i => {
-    //                 if (i.type == item.type) {
-    //                     i.value.push(item);
-    //                 }
-    //             })
-    //         } else {
-    //             obj[item.type] = true;
-    //             prevArr.push({ type: item.type, value: [item] });
-    //         }
-    //         return prevArr;
-    //     }, []);
-    //     console.log(newArr);
-
+    // const arr = [
+    //     {name: "小明",fruit:["香蕉","qing"]}
+    // ]
+    function red() {
+            return new Promise(resolve => {
+                console.log("红灯");
+                setTimeout(() => {
+                    const redToGreen = green();
+                    console.log(redToGreen);    
+                    resolve(redToGreen);
+                }, 3000)
+            });
+    }
+    function green() {
+        return new Promise(resolve => {
+         console.log("绿灯");
+            setTimeout(() => {
+                const greenToYellow = yellow();
+                resolve(greenToYellow);
+            }, 5000)
+        });
+    }
+     function yellow() {
+            return new Promise(resolve => {
+                console.log("黄灯");
+                setTimeout(() => {
+                    const yellowToRed = red();
+                    resolve(yellowToRed);
+                }, 2000)
+            });
+        }
+        red();
 </script>
 </body>
 </html>
