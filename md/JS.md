@@ -14,6 +14,8 @@
     7. document.querySelector("div") // 通过选择器获取一个元素
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
  ```
+
+
  
  ##### Array 对象;
  ```javascript{.line-numbers}
@@ -236,6 +238,15 @@
       4. 如果 finally 中有 return ，程序会提前退出，
          返回值不是 try 和 catch 中保存的值； 
    */
+``` 
+##### 2. Class 
+```javascript{.line-numbers}
+   class Person {
+      constructor(){
+         public this.name = name;
+         
+      }
+   }
 ``` 
 
 
