@@ -7,38 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div {
-            width: 200px;
-            height: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            height: 500px;
             background: red;
-            margin: 250px auto;
-            transform: rotateY(-180deg);
-            transform-origin: 0 0;
+            margin: 0 auto;
+            display: flex;
+        }
+        p {
+            flex: 1;
+            white-space: nowrap;
+            overflow-y: hidden;
+        }
+        .green {
+            background: green;
+        }
+        .yellow {
+            background: yellow;
         }
     </style>
 </head>
-
 <body>
-    <script>
-    /*
-        200 请求成功
-        204 请求成功，但没有资源返回
-
-        301 永久重定向
-        302 临时重定向
-        304 资源未被修改，服务器不返回资源
-
-        400 请求报文中出现语法错误
-        401 未经授权
-        403 没有权限
-        404 没有找到资源
-
-        500 服务器内部错误
-        503 服务器超负荷运行
-        
-    */ 
-    
-    </script>
+    <div class="content">
+        <p class="green">
+            ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        </p>
+        <p class="yellow"></p>
+    </div>
 </body>
-
 </html>
