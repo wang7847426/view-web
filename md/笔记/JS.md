@@ -14,8 +14,10 @@
     7. document.querySelector("div") // 通过选择器获取一个元素
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
  ```
+ ##### 2. JS 操作 DOM ?
+```javascript{.line-numbers}
 
-
+ ```
  
  ##### Array 对象;
  ```javascript{.line-numbers}

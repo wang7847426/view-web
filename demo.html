@@ -11,31 +11,73 @@
             margin: 0;
             padding: 0;
         }
-        .content {
-            height: 500px;
+
+        header,
+        footer {
+            height: 50px;
+            background: #ccc;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .container {
+            padding: 0 200px;
+            position: relative;
+        }
+
+        .container div {}
+
+        .center {
+            float: left;
+            width: 100%;
+            height: 100vh;
             background: red;
-            margin: 0 auto;
-            display: flex;
+
         }
-        p {
-            flex: 1;
-            white-space: nowrap;
-            overflow-y: hidden;
+
+        .left,
+        .right {
+
+            width: 200px;
+            height: 100vh;
         }
-        .green {
-            background: green;
+
+        .left {
+            position: absolute;
+            left: 0;
+            background: orange;
         }
-        .yellow {
-            background: yellow;
+
+        .right {
+            position: absolute;
+            right: 0;
+            background: blue;
         }
     </style>
 </head>
+
 <body>
-    <div class="content">
-        <p class="green">
-            ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-        </p>
-        <p class="yellow"></p>
+    <header>头</header>
+    <div class="container">
+        <div class="center">
+            三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
     </div>
+    <footer>低</footer>
+
+    <script>
+        let arr1 = [1, 23, 568, 8, 6, 11, 65, 16];
+        let arr2 = [1, 2, 55, 18, 6, 11, 65, 116];
+        arr1.forEach(item => {
+            if(arr2.includes(item)){
+                console.log(arr2.indexOf(item));
+            }
+        })
+    </script>
 </body>
+
 </html>
