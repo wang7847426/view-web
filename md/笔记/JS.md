@@ -13,11 +13,47 @@
     6. document.getElementsByClassName('.wrapper') // 通过 class属性 获取 DOM ，返回 数组
     7. document.querySelector("div") // 通过选择器获取一个元素
     8. document.querySelectorAll("div") // 通过选择器获取一组元素
- ```
- ##### 2. JS 操作 DOM ?
+```
+##### 2. JS 操作 DOM 修改元素属性 ?
 ```javascript{.line-numbers}
+   获取属性： element.getAttribute(属性名)
+   设置属性： element.setAttribute(属性名.值)
+   删除属性： element.removeAttribute(属性名)
+```
+##### 3. JS 操作 DOM 获取父节点和兄弟结点 ?
+```javascript{.line-numbers}
+   获取父元素节点：  element.parentNode 
+   获取当前元素前一个节点（可能是空白文本）：element.previousSibling 
+   获取当前元素前一个节点： element.previousElementSibling
+   获取当前元素后一个节点（可能是空白文本）： element.nextSibling
+   获取当前元素后一个节点： element.nextSiblingElement 
+```
+##### 4. JS 操作 DOM 增删改 ?
+```javascript{.line-numbers}
+   创建元素节点： document.createElement(标签名)
+   创建文本节点： document.createTextNode(文本内容)
+   添加子节点：   父节点.appendChild(子节点)
+   在指定子节点前添加节点：  父节点.insetBefore(新节点,旧节点)
+   替换已有的子节点：  父节点.replaceChild(新节点,旧节点)
+   删除子节点：  父节点.removeChild(子节点)
+```
+##### 5. 事件绑定 ?
+```javascript{.line-numbers}
+   1. 对象.事件 = 函数
+   绑定响应函数，同时只能为一个事件绑定一个响应函数,后面的响应函数会覆盖前面的响应函数。
+   2. 对象.addEventListener()可以为事件绑定多个响应函数
+      参数:
+         1.事件的字符串，不用添加前面的on
+         2.回调函数，当事件触发时该函数会被调用
+         3.是否在捕获阶段触发事件，需要布尔值，默认false
+   3. 对象.removeEventListener(type，handler，false/true)移除事件
+      参数:同上
+```
 
- ```
+
+
+
+
  
  ##### Array 对象;
  ```javascript{.line-numbers}
@@ -187,6 +223,7 @@
    /* 
       5. ES6 的 extends
       目前最优的继承
+      
    */
    class Parent{
       constructor(){

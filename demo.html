@@ -12,71 +12,34 @@
             padding: 0;
         }
 
-        header,
-        footer {
-            height: 50px;
-            background: #ccc;
-        }
-
-        footer {
-            clear: both;
-        }
-
-        .container {
-            padding: 0 200px;
-            position: relative;
-        }
-
-        .container div {}
-
-        .center {
-            float: left;
-            width: 100%;
-            height: 100vh;
-            background: red;
-
-        }
-
-        .left,
-        .right {
-
-            width: 200px;
-            height: 100vh;
-        }
-
-        .left {
-            position: absolute;
-            left: 0;
-            background: orange;
-        }
-
-        .right {
-            position: absolute;
-            right: 0;
-            background: blue;
+        div {
+            width: 300px;
+            height: 200px;
+            background-image: linear-gradient(to left, red, yellow);
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-    <header>头</header>
-    <div class="container">
-        <div class="center">
-            三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世三生三世
-        </div>
-        <div class="left">left</div>
-        <div class="right">right</div>
+    <div>
+        <em></em>
+        <span></span>
     </div>
-    <footer>低</footer>
 
     <script>
-        let arr1 = [1, 23, 568, 8, 6, 11, 65, 16];
-        let arr2 = [1, 2, 55, 18, 6, 11, 65, 116];
-        arr1.forEach(item => {
-            if(arr2.includes(item)){
-                console.log(arr2.indexOf(item));
+        function A() {
+            this.x = 10;
+        }
+        A.prototype = {
+            x: 20,
+            y() {
+                console.log(55)
             }
-        })
+        }
+        var a = new A();
+        console.log(a.x)
+        a.y();
     </script>
 </body>
 

@@ -106,3 +106,36 @@
             5. stretch：如果项目未设置高度或设为auto，将占满整个容器的高度
             6. auto：（默认值） 
 ```
+##### 7. 多行文字居中显示
+```javascript{.line-numbers}
+    第一种：
+    .父元素{
+        display: table;
+    }
+    .子元素{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    第二种： flex 布局；
+```
+##### 8. css3 渐变
+```javascript{.line-numbers}
+    1. 线性渐变：
+        background-image: linear-gradient(方向, 颜色, 颜色,'...');
+        方向：可填写 to left， to left bottom， 30deg， -30deg;
+        颜色: 可填写 red， #fff;
+
+    2. 径向渐变：需要添加前缀；
+        background-image: radial-gradient(形状 大小 at 起点, 颜色, 颜色,'...');
+        起点：可填写 center， 百分比 50% 50%
+        形状：可填写 ellipse表示椭圆形，circle表示圆形
+        大小：可填写 closest-side：最近边；farthest-side：最远边；closest-corner：最近角；farthest-corner：最远角。
+
+    3. 重复性渐变：
+        background-image: repeating-radial-gradient(形状 大小 at 起点, 颜色 10%, 颜色 15%,'...');
+        同 2 相同
+```
+##### 9. filter
+```javascript{.line-numbers}
+    
+```
