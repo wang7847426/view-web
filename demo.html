@@ -7,40 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        div {
-            width: 300px;
-            height: 200px;
-            background-image: linear-gradient(to left, red, yellow);
-            margin: 0 auto;
-        }
+       div[foo*='ss']{
+        width: 20px;
+        height: 20px;
+        background: #000;
+        color: #fff;
+       }
     </style>
+    <script src="./js/lib/jquery.js">
+
+    </script>
 </head>
 
 <body>
-    <div>
-        <em></em>
-        <span></span>
-    </div>
+    <div foo="ss">1</div>
+    <div foo="sas">2</div>
+    <div foo="ss">3</div>
+    <div foo="ss">4</div>
+    <div foo="sdds">5</div>
+    <div foo="sddss">6</div>
+    <div foo="ss">7</div>
+    <div foo="soos">8</div>
+    <div foo="pp">9</div>
+    <div foo="ss55">0</div>
+
 
     <script>
-        function A() {
-            this.x = 10;
+        var name ='aa'
+       function fn (){
+        var name = "xx";
+        return function() {
+            console.log(this.name)
         }
-        A.prototype = {
-            x: 20,
-            y() {
-                console.log(55)
-            }
-        }
-        var a = new A();
-        console.log(a.x)
-        a.y();
+       }
+       var obj = {name:'xxxxx'}
+       fn().call(obj);
     </script>
+
 </body>
 
 </html>

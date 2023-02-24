@@ -7,6 +7,19 @@
     问题原因：'+'高的优先级大于'?'的优先级；
     问题解决：需要对三元表达式外围增加一对括号
 ```
+##### 2. 为传递给函数的数组赋值
+```javascript{.line-numbers}
+    var arrList = [1,2,3];
+    function init(arr){
+        arr = []; // arr 会开辟新的空间，不会修改原始的数组
+        console.log(arrList); // 原始数组未被修改 [1,2,3]
+        // 解决
+        // 1. arr[0] = 1;
+        // 2. 使用数组的方法如 push、pop、unshift、shift
+    }
+    init(arrList)
+```
+
 ### Vue
 ##### 1. 在同一组件下使用对 data 中的引用数据的问题；
 ```ruby

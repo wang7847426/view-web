@@ -51,10 +51,36 @@
 ```
 
 
-
-
-
- 
+##### 原生ajax；
+```javascript{.line-numbers}
+    /* 
+        创造请求实例
+        new ActiveXObject() IE6 以下
+    */ 
+    const xml = new XMLHttpRequest();
+    /*
+        method:  请求方式      如： GET、POST...
+        url:     请求的地址
+        async：  是否需要跨域   值： true（默认值）， false 
+        (如果设置为false,则send方法只有等到服务器返回了结果，才会进行下一步操作)
+    */ 
+    xml.open("method","url","async");
+    /*
+        GET 请求：  null
+        POST 请求： 字符型的键值对  如： "name=小明"
+    */ 
+    xml.send(null)
+    /*
+        使用 onreadystatechange 监听
+        当 xml.readyState == 4 && xml.status == 200 时， 
+        使用 JSON.parse(xml.responseText)， 接受数据 
+    */ 
+    xml.onreadystatechange = function(){
+        if(xml.readyState == 4 && xml.status == 200){
+            console.log(JSON.parse(xml.responseText))
+        }
+    }
+```
  ##### Array 对象;
  ```javascript{.line-numbers}
     push：向数组末尾添加一个或多个元素，并返回数组的长度；
