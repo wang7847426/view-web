@@ -62,7 +62,7 @@
     }
 ```
 
-# Vue 的原理：
+# Vue2 的原理：
 ## 1. diff算法
 ```javascript{.line-numbers}
     1. 旧前 和 新前

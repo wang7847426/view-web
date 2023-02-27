@@ -49,7 +49,37 @@
    3. 对象.removeEventListener(type，handler，false/true)移除事件
       参数:同上
 ```
+##### 6. 事件对象 ?
+```javascript{.line-numbers}
+   pageX、pageY：当前鼠标在整个文档中的位置；
+   offsetX、offsetY：当前鼠标在当前元素中的位置；
+   layerX、layerY：当前鼠标在当前元素中的位置（是否有定位，没有定位就是body）；
+   clientX、clientY：浏览器的可视化，
+   screenX、screenY：物理屏幕的可视化，
+```
+##### 7. offset、client、scroll
+```javascript{.line-numbers}
+1. offset：指偏移量，可以获取元素在文档中的位置、大小； //常用于获取元素位置
+      offsetParent：与当前元素最近的经过定位的父元素，没有定位的父元素直接是body，自身设置了fixed则返回null；
+      offsetWidth: 只读属性， 元素的 width + padding + border；
+      offsetHeight: 只读属性， 元素的 height + padding + border；
+      offsetTop：只读属性，当前元素的上边框到offsetParent元素的上边框的距离；
+      offsetLeft：只读属性，当前元素的左边框到offsetParent元素的左边框的距离；
 
+2. client：可以获取元素可视区相关信息；   //常用于获取元素大小
+      clientWidth：只读属性，元素的 width + padding；
+      clientHeight：只读属性，元素的 height + padding；
+      clientTop：只读属性，上边框的大小；
+      clientLeft：只读属性，左边框的大小；
+      PS：元素设置为display:none, client所有属性为0；
+
+3. scroll：可以获取元素滚动相关信息； // 常用于获取滚动距离
+      scrollWidth：只读属性，表示元素的总宽度，包含了溢出而无法在页面上显示的部分；元素的 width + padding；
+      scrollHeight：只读属性，表示元素的总高度，包含了溢出而无法在页面上显示的部分；元素的 height + padding；
+      scrollTop：可读写，元素被卷起的高度， 
+      scrollLeft：可读写，元素被卷起的宽度，
+      PS：window.scrollTo(0,0); 回到顶部； 
+```
 
 ##### 原生ajax；
 ```javascript{.line-numbers}
@@ -81,8 +111,8 @@
         }
     }
 ```
- ##### Array 对象;
- ```javascript{.line-numbers}
+##### Array 对象;
+```javascript{.line-numbers}
     push：向数组末尾添加一个或多个元素，并返回数组的长度；
     pop： 删除数组最后一个元素， 并返回删除元素；
     unshift：向数组开头添加一个或多个元素，并返回数组的长度；
@@ -107,6 +137,7 @@
     reduce：数组的归并方法;
     find： 函数用来查找目标元素，找到就返回该元素，找不到返回undefined
     findIndex：函数也是查找目标元素，找到就返回元素的位置，找不到就返回-1
+
 ```
 ##### Array 对象之 sort 方法;
 ```javascript{.line-numbers}
@@ -148,7 +179,39 @@
    match：根据正则匹配字符串中的字符；
    search：获取与正则匹配的字符串首次出现的位置；
 ```
- 
+##### Math 对象;
+```javascript{.line-numbers}
+   random：0~1的随机数 
+   floor：向下取整
+   ceil：向上取整
+   round：四舍五入
+   max：返回数字中的最大值
+   min：返回数字中的最小值
+   trunc：将数字的小数部分去掉，只保留整数部分。
+```
+##### Date 对象;
+```javascript{.line-numbers}
+获取：
+   getFullYear：获取 Date 对象中的年份
+   getMonth: 获取 Date 对象中的月份
+   getDate：获取 Date 对象中的每月的天数
+   getDay：获取 Date 对象中的每个星期的天数
+   getHours：获取 Date 对象中的小时
+   getMinutes：获取 Date 对象中的分钟
+   getSeconds:获取 Date 对象中的秒
+   getMilliseconds：获取 Date 对象中的毫秒
+   getTime: 获取 从 1970年到现在的微秒
+设置：
+   setFullYear：设置 Date 对象中的年份
+   setMonth:设置 Date 对象中的月份
+   setDate：设置 Date 对象中的每月的天数
+   setDay：设置 Date 对象中的每个星期的天数
+   setHours：设置 Date 对象中的小时
+   setMinutes：设置 Date 对象中的分钟
+   setSeconds: 设置 Date 对象中的秒
+   setMilliseconds：设置 Date 对象中的毫秒
+   setTime: 设置 Date 对象中的小时
+```
  ##### JS 继承
  ```javascript{.line-numbers}
    /* 

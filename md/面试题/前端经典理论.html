@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>前端经典理论.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93">笔记总结</h1>
+<h2 id="%E5%8E%9F%E7%90%86">原理</h2>
+<h3 id="vue">vue</h3>
+<h4 id="1diff%E7%AE%97%E6%B3%95">1.diff算法</h4>
+<pre class="hljs"><code><div>    diff算法概念： diff算法就是比较两个虚拟节点的差异，vue中的diff算法是平级比较。 内部采用深层递归+双指针的方式进行比较；
+    diff算的流程：
+        第一：比较新旧节点的 key 和 tag 是否相同；
+        第二：相同节点比较属性，并复用老的节点；
+        第三：比较儿子节点，
+            1. 老的没有儿子，新的有儿子，直接插入新的儿子
+            2. 老的有儿子，新的没有儿子，直接删除老的儿子
+            3. 老的儿子是文本，新的儿子也是文本，直接更新文本内容
+            4. 老的儿子是一个列表，新的儿子也是列表 ==&gt; updateChildren
+        第四：比较新旧节点的儿子：头头、尾尾、头尾、尾头
+        第五：第四行不通，对比查找复用节点，（从新节点列表中的头部开始，依次去旧节点中查找）；
+
+    PS：vue3 中采用最长递增子序列来实现diff算法；
+</div></code></pre>
+<h2 id="html">HTML</h2>
+<h5 id="1-%E2%98%86-%E9%87%8D%E6%8E%92%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98-%E2%98%86">1. ☆ 重排(回流)、重绘 ☆</h5>
+<pre class="hljs"><code><div>    重排（回流）：当 DOM 的变化影响到元素的几何信息（DOM对象的位置和大小），浏览器需要重新计算元素的几何属性，将其摆放到合适的位置。
+        触发：
+            <span class="hljs-number">1</span>. 添加和删除可见的DOM；
+            <span class="hljs-number">2</span>. 修改元素的尺寸 -&gt; 边距、填充、宽度、高度等；
+        优化：   
+            <span class="hljs-number">1</span>. 分离读写操作；
+            <span class="hljs-number">2</span>. 样式集中修改；
+            <span class="hljs-number">3</span>. 尽量只修改position：absolute或fixed元素，对其他元素影响不大；
+            <span class="hljs-number">4</span>. 使用 <span class="hljs-symbol">transform:</span> translate 属性；
+
+    重绘：当一个元素外观发生变化，但没有改变布局，重新将元素的外观绘制出来的过程。
+        触发：
+            改变元素的color、background、box-shadow等属性；
+</div></code></pre>
+<h5 id="2-html5-%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%AD%E4%B9%89%E5%8C%96">2. html5 新特性、语义化</h5>
+<pre class="hljs"><code><div>    语义化标签： header、nav、main、article、section、aside、footer
+    优点：
+        <span class="hljs-number">1</span>. 代码结构清晰，易于阅读，利于开发。
+        <span class="hljs-number">2</span>. 有利于 搜扫引擎（SEO），搜索引擎爬虫会根据不同的标签来赋予不同的权重
+        <span class="hljs-number">3</span>. 方便其他设备解析（如屏幕阅读器）根据语义渲染网页
+</div></code></pre>
+<h5 id="3-%E7%BD%91%E9%A1%B5%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B">3. 网页生成过程</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. html 被HTML解析器解析成 DOM 树；
+    <span class="hljs-number">2</span>. css 被CSS解析器解析成 CSSOM 树；
+    <span class="hljs-number">3</span>. DOM 树和 CSSOM 树结合，形成 渲染树（Render Tree）；
+    <span class="hljs-number">4</span>. 生成布局（flow）， 将渲染树上的所有节点进行平面合成；
+    <span class="hljs-number">5</span>. 将布局绘制（paint）到屏幕上；
+</div></code></pre>
+<h5 id="4-%E6%A0%87%E7%AD%BE%E4%B8%8A%E7%9A%84title%E5%92%8Calt%E7%9A%84%E5%8C%BA%E5%88%AB">4. 标签上的title和alt的区别？</h5>
+<pre class="hljs"><code><div>    title：属性规定关于元素的额外信息，这些信息通常会在鼠标移到元素上时显示一段工具提示文本
+    alt：属性为图像提供了替代的文本，未显示的alt文字会代替图片
+</div></code></pre>
+<h5 id="5-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%94%B1%E5%93%AA%E4%B8%89%E5%B1%82%E6%9E%84%E6%88%90%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">5. 前端页面由哪三层构成，分别是什么？作用是什么？</h5>
+<pre class="hljs"><code><div></div></code></pre>
+<h2 id="css">CSS</h2>
+<h5 id="1-css%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5%E6%9E%84%E6%88%90">1. css基本语句构成</h5>
+<pre class="hljs"><code><div>    基本语句构成是选择器、属性、属性值
+</div></code></pre>
+<h5 id="2-%E2%98%86-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B-%E2%98%86">2. ☆ 盒子模型 ☆</h5>
+<pre class="hljs"><code><div>    盒子模型： （Box Model）就是在网页设计中经常使用到的css技术所使用的一种思维。
+    
+    盒子模型：分为 标准盒子模型和怪异格子模型   
+        标准盒模型下盒子的大小 = content + border + padding + margin；
+        怪异盒模型下盒子的大小 = width(content + border + padding) + margin
+    
+    两种模式的转换：
+        标准：box-<span class="hljs-symbol">sizing:</span>content-box;
+        怪异：box-<span class="hljs-symbol">sizing:</span>border-box;
+</div></code></pre>
+<h5 id="3-%E2%98%86-%E4%BB%80%E4%B9%88%E6%98%AFbfc%E6%80%8E%E4%B9%88%E5%BD%A2%E6%88%90-bfc-%E4%BD%9C%E7%94%A8-%E2%98%86">3. ☆ 什么是BFC？怎么形成 BFC？ 作用？  ☆</h5>
+<pre class="hljs"><code><div>    BFC(Block Formatting Content) 是块级格式化上下文， 是Web页面中盒模型布局的css渲染模式，是一个隔离的独立容器。
+
+    形成：
+        <span class="hljs-number">1</span>. 浮动：float 除 none以外；
+        <span class="hljs-number">2</span>. 绝对定位的元素；
+        <span class="hljs-number">3</span>. 非块级元素具有display：inline-block、table-cell、flex；
+        <span class="hljs-number">4</span>. 块级元素具有 overflow ，且值不是 visible；
+    
+    作用： 
+        <span class="hljs-number">1</span>. 清除浮动；
+        <span class="hljs-number">2</span>. 用于两栏自适应；
+        <span class="hljs-number">3</span>. 防止 margin 合并；
+</div></code></pre>
+<h5 id="4-displayopacityvisibility">4. display、opacity、visibility</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 性能：
+        opacity、visibility： 不会触发回流；
+        display：会触发回流，所以性能最差；
+    <span class="hljs-number">2</span>. 占位：
+        opacity、visibility：视觉上消失，在文档流中占位；
+        display：彻底消失，不在文档流中占位；
+    <span class="hljs-number">3</span>. 动画效果：
+        display、visibility：对 transition 无效；
+        opacity：对 transition 有效；
+    <span class="hljs-number">4</span>. 事件绑定：
+        display、visibility：绑定事件无法触发；
+        opacity：绑定事件可以触发；
+    <span class="hljs-number">5</span>. 子元素继承：
+        opacity、visibility： 会被子元素继承 （子元素设置 <span class="hljs-symbol">visibility:</span>visible; 会显示 ）；
+        display：不会被子元素继承；
+</div></code></pre>
+<h5 id="5-css-%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F">5. CSS 优先级顺序？</h5>
+<pre class="hljs"><code><div>    !important &gt; 行内样式 &gt; ID选择器 &gt; 类选择器 &gt; 标签 &gt; 通配符 &gt; 继承 &gt; 浏览器默认属性
+</div></code></pre>
+<h5 id="6-%E5%9C%A3%E6%9D%AF%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB">6. 圣杯和双飞翼实现方式的区别?</h5>
+<pre class="hljs"><code><div>    
+</div></code></pre>
+<h5 id="7-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95">7. 清除浮动的方法?</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 给父元素加 <span class="hljs-symbol">overflow:</span> hidden;
+    <span class="hljs-number">2</span>. 在父元素最后添加空的div，style设置为 clear：both
+    <span class="hljs-number">3</span>. 给父元素直接添加高度；
+    <span class="hljs-number">4</span>. 使用伪元素 clearfix 来清理；
+    <span class="hljs-number">5</span>. 双伪元素方法
+</div></code></pre>
+<h5 id="8-%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E5%BC%8F">8. 元素居中的方式</h5>
+<pre class="hljs"><code><div>    
+</div></code></pre>
+<h5 id="9-%E5%93%8D%E5%BA%94%E5%BC%8F">9. 响应式</h5>
+<pre class="hljs"><code><div>    就是一个网站兼容多个终端，而不是为每个终端做一个特定的版本。
+   
+    优点:  
+        1. 面对不同的分辩率的设备灵活性强；
+        2. 能够快捷解决多设备显示适应问题；
+    缺点： 
+        1. 兼容各种设备工作量大，效率低下；
+        2. 代码累赘，会出现隐藏无用的元素，加载时间长；
+    
+    使用：
+        @media screen and (min-width: 900px){} // 显示窗口 大于 900px
+        @media screen and (min-width: 600px) and (max-width: 900px){}  // 显示窗口 大于 600px 小于 900px
+        @media screen and (max-width: 600px){} // 显示窗口 显示窗口小于 600px
+</div></code></pre>
+<h5 id="10-import-%E5%92%8C-link-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%8C%BA%E5%88%AB">10. @import 和 link 标签的区别？</h5>
+<pre class="hljs"><code><div>    1. 从属关系：
+        @import是css提供的语法规则，只有导入样式表的作用
+        link是html提供的标签，不仅可以加载css文件，还可以定义rss、rel连接属性等
+    2. 加载顺序：
+        加载页面时，link标签引入的css被同时加载；
+        @import引入的css将在页面加载完毕后被加载
+    3. 兼容性：
+        @import是css2.1才有的语法，只可在ie5+才能识别；
+        link标签作为html元素，不存在兼容性问题
+    4. DOM可控性：
+        可以通过js操作DOM，插入link标签来改变样式；
+        无法使用@import的方式插入样式；
+    5. 权重：link引入的样式权重大于@import引入的样式
+</div></code></pre>
+<h5 id="11-divfoodivfoobardivfoobar-%E5%88%86%E5%88%AB%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88">11. div[foo]、div[foo='bar']、div[foo*='bar'] 分别代表什么？</h5>
+<pre class="hljs"><code><div>    div[foo]：所有带 foo 属性的元素
+    div[foo='bar']：所有带 foo 属性并且属性值为 bar 的元素；
+    div[foo*='bar']：所有带 foo 属性并且属性值中带有 bar 的元素；
+</div></code></pre>
+<h5 id="12-css-%E4%B8%AD%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B">12. css 中伪类和伪元素有哪些？</h5>
+<pre class="hljs"><code><div>    伪类：
+        :active  ：将样式添加到被激活的元素 
+        :focus  ：将样式添加到被激活的元素
+        :hover  ：当鼠标悬浮在元素上方是，向元素添加样式
+        :link   ：当鼠标悬浮在元素上方是，向元素添加样式
+        :visited    ：将特殊的样式添加到被访问的链接
+        :first-child    ：将特殊的样式添加到元素的第一个子元素
+        :lang   ：允许创作者来定义指定的元素中使用的语言
+    伪元素:
+        :first-letter ：将特殊的样式添加到文本的首字母
+        :first-line ：将特殊的样式添加到文本的首行
+        :before ：在某元素之前插入某些内容
+        :after  ：在某元素之后插入某些内容
+</div></code></pre>
+<h2 id="javascript">Javascript</h2>
+<h5 id="1-%E2%98%86-js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E2%98%86">1. ☆ Js 的数据类型有哪些？☆</h5>
+<pre class="hljs"><code><div>    基本类型： String、number、Boolean、Null、Undefined、symbol(ES6)、BigInt(ES1<span class="hljs-number">0</span>)；
+    复制类型： Array、Function、Object(包含： Array、Function)；
+</div></code></pre>
+<h5 id="2-%E2%98%86-js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%A1%88%E2%98%86">2. ☆ Js 的数据类型检测有哪些方案？☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. <span class="hljs-symbol">typeof:</span> 
+        优点：能够快速区分基本数据类型;
+        缺点：不能将Object、Array和Null区分，都返回object;
+        <span class="hljs-symbol">PS:</span> JS中会将二进制前三位为<span class="hljs-string">'0'</span>的判断为 object，而 Null 二进制表示全都是<span class="hljs-number">0</span>。
+        <span class="hljs-comment"># typeof "test" //string</span>
+        <span class="hljs-comment"># typeof [] //object</span>
+
+    <span class="hljs-number">2</span>. <span class="hljs-symbol">instanceof:</span> 
+        优点：能够区分Array、Object和Function，适合用于判断自定义的类实例对象;
+        缺点：Number，Boolean，String等基本数据类型不能判断;
+        <span class="hljs-comment"># [] instanceof Array  // true</span>
+        <span class="hljs-comment"># "test" instanceof String // false</span>
+
+    <span class="hljs-number">3</span>. Object.prototype.toString.call(): 
+        优点：精准判断数据类型;
+        缺点：写法繁琐不容易记，推荐进行封装后使用;
+        <span class="hljs-comment"># Object.prototype.toString.call('test') === '[object String]' // true</span>
+</div></code></pre>
+<h5 id="3-%E2%98%86-%E9%97%AD%E5%8C%85-%E2%98%86">3. ☆ 闭包 ☆</h5>
+<pre class="hljs"><code><div>    闭包： 有权访问另一个函数作用域中的变量的函数；
+    用途： 
+        <span class="hljs-number">1</span>. 模拟块级作用域；
+        <span class="hljs-number">2</span>. 私有化变量；
+        <span class="hljs-number">3</span>. 创建模块；
+        <span class="hljs-number">4</span>. 能够访问函数中私有的变量；
+    优点： 延长变量的生命周期；
+    缺点： 会导致函数变量一直保存在内存中， 过多的闭包会导致内存的泄露；
+    常见的表现形式：  
+    /*
+        function fn(){
+            let a = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">return</span> function(){
+                a++;
+                console.log(a);
+            }
+        }
+        var f = fn();  <span class="hljs-regexp">//</span> 闭包的产生，将fn返回的函数赋值到变量上，且不再调用fn函数；
+        f();
+    *<span class="hljs-regexp">/
+    PS： 总结：局部变量无法共享和长期的保存，而全局变量可能造成变量污染，当我们希望有一种机制既可以长久保存又不会造成全局变量污染
+</span></div></code></pre>
+<h5 id="3-%E2%98%86-%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE-%E2%98%86">3. ☆ 原型、原型链 ☆</h5>
+<pre class="hljs"><code><div>    原型：对象中固有的 __proto_<span class="hljs-number">_</span>（隐式原型） 属性，该属性指向构造函数的 prototype（显示原型） 原型属性。
+    原型链：当访问一个对象的属性时，会先在这个对象本身上找，如果没有会在这个对象的__proto_<span class="hljs-number">_</span>上找，对象的__proto_<span class="hljs-number">_</span> 指向构造函数prototype，还是没有的话，会到在Object身上的__proto_<span class="hljs-number">_</span>上查找，直到最顶层为null。
+    <span class="hljs-symbol">PS:</span>现在是 [[prototype ]];
+</div></code></pre>
+<h5 id="4-%E2%98%86-%E7%BB%A7%E6%89%BF-%E2%98%86">4. ☆ 继承 ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 原型链继承
+        优点：父类的方法可以共享；
+        缺点： <span class="hljs-number">1</span>. 子类实例无法向父类传参
+              <span class="hljs-number">2</span>. 父类上的引用类型（数组，对象）的数据会被子类修改
+    <span class="hljs-number">2</span>. 借用构造函数继承
+        优点：父类的引用类型的数据不会被子类修改
+        缺点：子类不能访问父类原型上的属性、方法
+    <span class="hljs-number">3</span>. 组合继承
+        优点：父类可以复用，并且可以访问父类原型上的属性、方法
+        缺点：会调用两次父类的构造函数，子类上的原型会有两份相同的属性和方法，影响性能
+    <span class="hljs-number">4</span>. 寄生式组合继承
+        优点：解决了上面三种方式的缺点
+        缺点：实现较为复杂
+    <span class="hljs-number">7</span>. ☆ ES6 extends ☆
+        最优
+</div></code></pre>
+<h5 id="5-%E2%98%86-this%E6%8C%87%E5%90%91new%E5%85%B3%E9%94%AE%E5%AD%97-%E2%98%86">5. ☆ this指向、new关键字 ☆</h5>
+<pre class="hljs"><code><div>    this指向：
+        <span class="hljs-number">1</span>. 普通函数调用， this 指向 window；
+        <span class="hljs-number">2</span>. 对象方法调用， this 指向 这个对象；
+        <span class="hljs-number">3</span>. 构造函数调用， this 指向 用 new 创建的新对象；
+        <span class="hljs-number">4</span>. 通过 call、apply、bind 调用， 指定调用函数的 this 指向；
+
+    new 关键字：
+        <span class="hljs-number">1</span>. 首先创建了一个空对象；
+        <span class="hljs-number">2</span>. 将对象的原型指向构造函数的 prototype；
+        <span class="hljs-number">3</span>. 构造函数的 this 指向对象；
+        <span class="hljs-number">4</span>. 返回新创建的对象
+</div></code></pre>
+<h5 id="6-%E2%98%86-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81-%E2%98%86">6. ☆ 防抖、节流 ☆</h5>
+<pre class="hljs"><code><div>    防抖：触发高频事件后在n秒内函数只会执行一次，如果在n秒内再次触发，则需要重新计算时间。
+        适用：
+            <span class="hljs-number">1</span>. 搜索框搜索输入； 
+            <span class="hljs-number">2</span>. 手机号、邮箱验证输入检测 onchange oninput事件；
+            <span class="hljs-number">3</span>. 窗口大小Resize；
+    
+    节流：当持续触发事件时，保证隔间时间触发一次事件。
+        适用：
+            <span class="hljs-number">1</span>. 懒加载、滚动加载、加载更多或监听滚动条位置；
+            <span class="hljs-number">2</span>. 百度搜索框，搜索联想功能；
+            <span class="hljs-number">3</span>. 防止高频点击提交，防止表单重复提交；
+</div></code></pre>
+<h5 id="7-%E2%98%86-%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%B7%B1%E6%8B%B7%E8%B4%9D-%E2%98%86">7. ☆ 浅拷贝、深拷贝 ☆</h5>
+<pre class="hljs"><code><div>    浅拷贝：只会复制某个对象的地址，不会复制对象的本身，新旧对象还是共享一块内存；
+        形式：
+            <span class="hljs-number">1</span>. Object.assign()；
+            <span class="hljs-number">2</span>. 扩展运算符；
+
+    深拷贝：会创建一个相同的对象，新旧对象不会共享一块内存，修改新对象的值不会改变就对象；
+        形式：
+            <span class="hljs-number">1</span>. JSON.parse(JSON.stringify(obj)) /<span class="hljs-regexp">/ 函数、原型链上属性和方法无法被拷贝；
+            2. 递归函数
+</span></div></code></pre>
+<h5 id="8-%E2%98%86-%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-%E2%98%86">8. ☆ 作用域、作用域链 ☆</h5>
+<pre class="hljs"><code><div>    作用域：作用域就是变量的可用性的代码范围，就叫做这个变量的作用域。
+    作用域分为： 全局作用域、局部作用域、块级作用域；
+
+    作用域链：当你要访问一个变量时，首先会在当前作用域下查找，如果没有查找到，则回去上一级作用域进行查找，直到找到全局作用域，这个查找过程形成的链条叫做作用域链
+</div></code></pre>
+<h5 id="9-%E2%98%86-eventloop-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-%E2%98%86">9. ☆ EventLoop 事件循环 ☆</h5>
+<pre class="hljs"><code><div>
+    PS: 宏任务和微任务
+    微任务：Promise.then()，.then中的逻辑是微任务
+    宏任务：setTimeout、setInterval、xhr、callback
+</div></code></pre>
+<h5 id="10-%E2%98%86-callapplybind-%E2%98%86">10. ☆ call、apply、bind ☆</h5>
+<pre class="hljs"><code><div>    call、apply、bind都是改变this指向的方法
+    区别：
+        call： 参数<span class="hljs-number">1</span>：this， 参数<span class="hljs-number">2</span>：多个参数使用逗号隔开；
+        apply：参数<span class="hljs-number">1</span>：this， 参数<span class="hljs-number">2</span>：数组的形式；
+        bind：不会立即执行，而是返回一个函数，在传参；
+</div></code></pre>
+<h5 id="11-%E2%98%86-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E6%8D%95%E8%8E%B7-%E2%98%86">11. ☆ 事件冒泡、事件委托（捕获） ☆</h5>
+<pre class="hljs"><code><div>    事件冒泡：对象上绑定事件，如果该对象上有这个事件会触发，如果没有这个事件就会逐级上找；
+    
+    事件委托：把原本需要绑定在子元素的响应事件，委托给父元素，让父元素担当事件监听的职务；
+            事件委托的原理是DOM元素的事件冒泡。
+    
+PS： 阻止事件冒泡和阻止默认事件
+    阻止事件冒泡： e.stopPropagation() <span class="hljs-params">||</span> e.cancelBubble = <span class="hljs-literal">true</span>;
+    阻止默认事件： e.preventDefault()
+    阻止事件冒泡并阻止默认事件： <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+</div></code></pre>
+<h5 id="12-%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0-%E5%92%8C-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB">12. 普通函数 和 箭头函数的区别？</h5>
+<pre class="hljs"><code><div>    箭头函数：
+        <span class="hljs-number">1</span>. 不能做构造函数，没有prototype原型对象，不能做 new 操作；
+        <span class="hljs-number">2</span>. 没有this， 在声明时可以捕获其所在上下文的this供自己使用；
+        <span class="hljs-number">3</span>. 不能通过 apply，call，bind 改变 this 指向；
+        <span class="hljs-number">4</span>. 没有 arguments 对象，通过使用 ...形参 的方式代替；
+        <span class="hljs-number">5</span>. 一个参数可省略(), 一行逻辑可省略{} 和 <span class="hljs-keyword">return</span>；
+</div></code></pre>
+<h5 id="13-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98">13. 什么是跨域问题 ，如何解决跨域问题?</h5>
+<pre class="hljs"><code><div>    跨域：是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的。  
+    同源策略：是浏览器对 JS 实施的安全限制，只要 协议、域名、端口 有任何一个不同，都被当作是不同的域。
+    跨域原理：即是通过各种方式，避开浏览器的安全限制。
+    方式：
+    <span class="hljs-number">1</span>. JSONP 的缺点: 使用get请求不安全，携带数据较小；
+    <span class="hljs-number">2</span>. CORS : 跨域资源共享 服务器设置对CORS的支持原理；
+    <span class="hljs-number">3</span>. proxy代理: 在开发中使用proxy，在服务器上使用nginx代理；
+    <span class="hljs-number">4</span>. window.postMessage() 利用h5新特性window.postMessage()
+</div></code></pre>
+<h5 id="14-%E5%8F%8C%E7%AD%89%E5%8F%B7%E7%9A%84%E8%A7%84%E5%88%99">14. 双等号的规则</h5>
+<pre class="hljs"><code><div>    <span class="hljs-comment">#1. '对象 == 字符': 会把对象隐式转换为字符串。</span>
+    <span class="hljs-number">2</span>. <span class="hljs-string">'null == Undefined'</span>: 为 <span class="hljs-literal">true</span> ，除了这种情况null/undefined和其他任何值都不会相等；
+    <span class="hljs-number">3</span>. <span class="hljs-string">'NaN == NaN'</span>: 为 <span class="hljs-literal">false</span> ;
+    <span class="hljs-number">4</span>. <span class="hljs-string">'Symbol() == Symbol()'</span>: 为 <span class="hljs-literal">false</span>;
+    
+    除了上面的情况，不同类型间对比的时候都要先转换成数字，再进行比较。
+
+    <span class="hljs-symbol">PS:</span> 转换都是通过valueOf,(valueOf()方法通常由 Javascript 在后台自动调用)；
+</div></code></pre>
+<h5 id="15-objectis--%E5%92%8C--%E7%9A%84%E5%8C%BA%E5%88%AB">15. Object.is()、 == 和 === 的区别？</h5>
+<pre class="hljs"><code><div>    Object.is(): 用来判断两个值是否严格相等，处理一些特殊的情况； 
+    // 1. +0 和 -0 不再相等;
+    // 2. 两个 NaN 相等；
+
+    '==': 只比较值，不比较值的类型； 不同的类型会进行隐式的转换；
+    
+    '===': 会比较值和类型；如果类型不同直接返回 false；
+</div></code></pre>
+<h5 id="16-%E2%98%86-localstoragesessionstoragecookies-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB-%E2%98%86">16. ☆ localStorage、sessionStorage、cookies 有什么区别? ☆</h5>
+<pre class="hljs"><code><div>    相同点：
+        将数据存储在客户端
+    不同点：
+        <span class="hljs-number">1</span>. 存储大小： 
+            cookie为<span class="hljs-number">4</span>K；localStorage、sessionStorage为<span class="hljs-number">5</span>M或更大；
+        <span class="hljs-number">2</span>. 有效时间： 
+            localStorage： 需要用户主动删除
+            sessionStorage： 关闭浏览器窗口就会删除
+            cookie：可以设置时间， 没有时间关闭浏览器窗口就会删除
+        <span class="hljs-number">3</span>. 交互方式
+            cookie：cookie数据可以自动传递到服务端， 服务端也可以写cookie到客户端
+            localStorage、sessionStorage： 不会传递到服务端，仅在客户端保存
+        <span class="hljs-number">4</span>. 操作方法：
+            cookie：需要自己封装方法
+            localStorage、sessionStorage： 提供了API， setItem、getItem、removeItem...  
+</div></code></pre>
+<h5 id="17-forin-%E5%92%8C-forof%E7%9A%84%E5%8C%BA%E5%88%AB">17. for...in 和 for...of的区别?</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. <span class="hljs-keyword">for</span>...<span class="hljs-keyword">in</span> 是ES5， <span class="hljs-keyword">for</span>...of 是 ES6；
+    <span class="hljs-number">2</span>. <span class="hljs-keyword">for</span>...<span class="hljs-keyword">in</span> 循环出的是 key， <span class="hljs-keyword">for</span>...of 循环出的是 value；
+    <span class="hljs-number">3</span>. <span class="hljs-keyword">for</span>...<span class="hljs-keyword">in</span> 会遍历所有的可枚举属性，包括原型；
+    <span class="hljs-number">4</span>. <span class="hljs-keyword">for</span>...of 遍历对象，需要配合 Object.keys() 使用；
+
+    <span class="hljs-symbol">PS:</span> <span class="hljs-keyword">for</span>...<span class="hljs-keyword">in</span> 更适合遍历对象， <span class="hljs-keyword">for</span>...of 更适合遍历数组；
+</div></code></pre>
+<h5 id="18-%E2%98%86-undefined-%E5%92%8C-null-%E7%9A%84%E5%8C%BA%E5%88%AB-%E2%98%86">18. ☆ undefined  和 null 的区别？ ☆</h5>
+<pre class="hljs"><code><div>    undefined 未定义； null： 为空；
+    <span class="hljs-symbol">undefined:</span> 代表 <span class="hljs-string">'无'</span> 的原始值(未初始化的变量)，转化数值时为 NaN；
+    <span class="hljs-symbol">null:</span> 代表 <span class="hljs-string">'无'</span> 的对象(空对象的指针)， 转化数值时为 <span class="hljs-number">0</span> ；
+
+    出现场景：
+    undefined
+        <span class="hljs-number">1</span>. 变量命名但未赋值的时候 为 undefined；
+        <span class="hljs-number">2</span>. 函数没有返回值的时候 为 undefined；
+        <span class="hljs-number">3</span>. 对象中属性没有没有赋值的时侯 为 undefined；
+        <span class="hljs-number">4</span>. 调用函数时，应该提供参数但未提供时 为 undefined；
+    null：
+        <span class="hljs-number">1</span>. 作为对象原型链的终点；
+        <span class="hljs-number">2</span>. 作为函数的参数，表示参数不是对象（函数不需要参数是可以传入null）
+        <span class="hljs-number">3</span>. 如果定义的变量准备将来用于保存对象，可以将变量的初始值设置为 null
+        <span class="hljs-number">4</span>. 内存回收-对象、数组销毁
+        <span class="hljs-number">5</span>. 删除时间监听
+</div></code></pre>
+<h5 id="19-break-%E5%92%8C-continue-%E7%9A%84%E5%8C%BA%E5%88%AB">19. break  和 continue 的区别？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">break</span>：结束整个循环，不在判断执行循环条件是否成立；
+    continue： 只结束本次循环，而不是整个循环，不能再switch中使用；
+</div></code></pre>
+<h5 id="20-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F">20. 哪些情况会导致内存泄漏</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 意外的全局变量：由于使用为声明变量，而意外的创建了一个全局变量而这个变量一直保存在内存中无法回收。
+    <span class="hljs-number">2</span>. 被遗忘的计时器或回调函数：设置了 setInterval 定时器，而忘记取消它，循环函数中引用外部变量，这个变量将保存在内存中无法回收。
+    <span class="hljs-number">3</span>. 脱离 DOM 的引用：获取一个DOM元素，然后将其删除，由于一直保留了对DOM的引用，所以他也无法被回收。
+    <span class="hljs-number">4</span>. 闭包：不合理的使用闭包，从而导致某些变量一直保存在内存中。
+</div></code></pre>
+<h5 id="21-nan">21. NaN</h5>
+<pre class="hljs"><code><div>    NaN（not a number）：不是一个数字，表示是否属于 number 类型的一种状态；是或否，不是确切的值；
+    PS: JS中number数据类型除了浮点型和整数型，还有一个特殊值 NaN；
+    console.log(typeof NaN); // number；
+    console.log(NaN == NaN); // false, 不是确切的值； 
+    console.log(Number(&quot;abc&quot;)) // NaN, 表达式中存在不可转化的变量，返回了无效的结果，不是返回确切的值；   
+</div></code></pre>
+<h5 id="22-%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB">22. 工厂函数和构造函数的区别？</h5>
+<pre class="hljs"><code><div>    工厂函数：就是一个函数，用来创造对象的，对象拥有相同的属性和方法；
+    构造函数：当一个普通函数作为创造一类对象时，称为构造函数；需要通过 new 这个函数创建。
+    区别：
+        1. 工厂函数创造的对象是Object实例， 构造函数创造的对象是构造函数的实例。
+        2. 工厂函数创造需要在内部将对象返回， 构造函数创造对象是需要通过new关键字。（不使用new，构造函数内部的属性和方法将直接绑定到window上）
+        3. 工厂函数创造的对象中的方法属性都是独立的， 构造函数可以将方法放在原型上减少对内存的消耗。
+</div></code></pre>
+<h5 id="23-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E7%A9%BA%E5%AF%B9%E8%B1%A1">23. 如何判断一个空对象</h5>
+<pre class="hljs"><code><div>    let obj = {};
+    1. 使用JSON.stringify()
+        JSON.stringify(obj) == '{}';
+    2. 使用 ES6 的Object.keys();
+        Object.keys(obj).length !== 0
+</div></code></pre>
+<h5 id="24-documentload-%E5%92%8C-documentready-%E7%9A%84%E5%8C%BA%E5%88%AB">24. document.load 和 document.ready 的区别</h5>
+<h2 id="es6es7es8es9es10">ES6、ES7、ES8、ES9、ES10</h2>
+<h4 id="es6">ES6</h4>
+<h5 id="1-es6-%E6%96%B0%E5%A2%9E">1. ES6 新增</h5>
+<pre class="hljs"><code><div>    1. 新增symbol类型 表示独一无二的值，用来定义独一无二的对象属性名;
+    2. const/let  都是用来声明变量,不可重复声明，具有块级作用域。存在暂时性死区，也就是不存在变量提升。(const一般用于声明常量);
+    3. 变量的解构赋值(包含数组、对象、字符串、数字及布尔值,函数参数),剩余运算符(...rest);
+    4. 模板字符串(${data});
+    5. 扩展运算符(数组、对象);;
+    6. 箭头函数;
+    7. Set和Map数据结构;
+    8. Proxy/Reflect;
+    9. Promise;
+    10. async函数;
+    11. Class;
+    12. Module语法(import/export);
+    13. Object.is(); 
+</div></code></pre>
+<h5 id="2-%E2%98%86-promise-%E2%98%86">2. ☆ Promise ☆</h5>
+<pre class="hljs"><code><div>    Promise 是异步编程的一种解决方式，主要解决的是回调地狱（回调金字塔）；
+    
+    Promise 的三种状态：
+        <span class="hljs-number">1</span>. pending： 等待中
+        <span class="hljs-number">2</span>. fulfilled：已成功
+        <span class="hljs-number">3</span>. rejected： 已失败
+        <span class="hljs-symbol">PS:</span> 一旦状态发生改变，就不会在变。 pending -&gt; fulfilled、 pending -&gt; rejected，只要处于 fulfilled、rejected 状态就不再变
+
+    Promise 对象的方法：
+        <span class="hljs-number">1</span>. Promise.<span class="hljs-keyword">then</span>：
+            参数<span class="hljs-number">1</span>： 成功的回调函数
+            参数<span class="hljs-number">2</span>： 失败的回调函数
+        <span class="hljs-number">2</span>. Promise.catch： 用来捕获异常的；
+        <span class="hljs-number">3</span>. Promise.finally：无论返回的结果是成功还是失败，都会执行finally方法；
+        <span class="hljs-number">3</span>. Promise.all：作用是接收一组异步任务，然后并行执行异步任务，并且在所有异步操作执行完后才执行回调。
+            使用：Promise.all([p,p1,p2,p3...]).<span class="hljs-keyword">then</span>();
+        <span class="hljs-number">4</span>. Promise.race：作用是接收一组异步任务，然后并行执行异步任务，只保留取第一个执行完成的异步操作的结果，其他的方法仍在执行，不过执行结果会被抛弃。
+            使用：Promise.race([p,p1,p2,p3...]).<span class="hljs-keyword">then</span>();
+</div></code></pre>
+<h5 id="3-%E2%98%86-constletvar-%E2%98%86">3. ☆ const、let、var ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. var 存在变量提升， const、let 没有变量提升；
+    <span class="hljs-number">2</span>. var 可以重复声明， const、let 不可以重复声明；
+    <span class="hljs-number">3</span>. var 不会构成块级作用域， const、let会构成块级作用域；
+    <span class="hljs-number">4</span>. const 声明后必须赋值且不能被修改， let 声明后可以不赋值且可以被修改；
+</div></code></pre>
+<h5 id="4-%E2%98%86-foreachmapfiltersomeeveryreducefindfindindex%E2%98%86">4. ☆ forEach、map、filter、some、every、reduce、find、findIndex☆</h5>
+<pre class="hljs"><code><div>    相同点：
+        都不会主动改变原数组中的基本类型的值；可以通过回调函数中原数组进行修改；
+    不同点：
+        <span class="hljs-number">1</span>. forEach 和 其他相比： forEach 没有返回值， 其他方法是有返回值的 需要 <span class="hljs-keyword">return</span>；
+        <span class="hljs-number">2</span>. filter 是过滤数组中的数据；
+        <span class="hljs-number">3</span>. some 是数组中有一个符合条件就返回 <span class="hljs-literal">true</span>；
+        <span class="hljs-number">4</span>. every 是数组中数据都符合条件就返回 <span class="hljs-literal">true</span>；
+        <span class="hljs-number">5</span>. reduce 是 参数<span class="hljs-number">1</span>：回调函数：
+                            参数<span class="hljs-number">1</span>：初始值，参数<span class="hljs-number">2</span>：值，参数<span class="hljs-number">3</span>：下标，参数<span class="hljs-number">4</span>：原数组， 
+                     参数<span class="hljs-number">2</span>： 初始值；
+        <span class="hljs-number">6</span>. find 是判断数组中的元素是否有符合的值；(返回符合条件的第一个元素)；
+                如果有，则返回该元素; 如果没有，则返回 undefined; 
+        <span class="hljs-number">7</span>. findIndex 是判断数组中的元素是否有符合的值;(返回符合条件的第一个元素)；
+                如果有，则返回该元素的下标; 如果没有，则返回 -<span class="hljs-number">1</span>; 
+        
+</div></code></pre>
+<h5 id="4-%E2%98%86-set-%E5%92%8C-map-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB-%E2%98%86">4. ☆ Set 和 Map 有什么区别？ ☆</h5>
+<pre class="hljs"><code><div>    相同：
+        <span class="hljs-number">1</span>. 都能通过迭代器进行<span class="hljs-keyword">for</span>...of 遍历；
+        <span class="hljs-number">2</span>. 键和值可以是任何得值；
+
+    不同：
+    Set：是值集合，Set的值是唯一的，可以做数组去重，
+        <span class="hljs-number">1</span>. 使用add(值)添加数据；
+        <span class="hljs-number">2</span>. 初始化 new Set([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+
+    Map：是键值对，而Map由于没有格式限制，可以做数据存储
+        <span class="hljs-number">1</span>. 使用set(键，值)存储数据，使用get(键)获取数据；
+        <span class="hljs-number">2</span>. 初始化 new Map([[<span class="hljs-number">1</span>, <span class="hljs-number">999</span>],[<span class="hljs-literal">true</span>, <span class="hljs-number">888</span>],[<span class="hljs-string">'aa'</span>, <span class="hljs-number">777</span>]]);
+</div></code></pre>
+<h5 id="5-objectis">5. Object.is();</h5>
+<pre class="hljs"><code><div>
+    Object.is(): // 用来判断两个值是否严格相等，处理一些特殊的情况；  
+    //如: +0 和 -0 不在相等， 两个 NaN 相等
+    console.log(Object.is(+0, -0)); // false
+    console.log(Object.is(NaN, NaN)); // true
+</div></code></pre>
+<h2 id="vuevuexaxiosvue-router">Vue、vuex、axios、vue-router</h2>
+<h4 id="vue">Vue</h4>
+<h5 id="1-vue-%E6%B8%90%E8%BF%9B%E5%BC%8F%E6%A1%86%E6%9E%B6">1. vue 渐进式框架</h5>
+<pre class="hljs"><code><div>    Vue是一套构建用户界面的 渐进式框架，Vue被设计为 自底向上逐级应用，Vue的核心库只关注视图层，不仅容易上手，还可以与第三方的库或已有的项目进行整合。
+</div></code></pre>
+<h5 id="2-%E4%BB%80%E4%B9%88%E6%98%AFmvvm">2. 什么是MVVM？</h5>
+<pre class="hljs"><code><div>    MVVM 是 Model-View-ViewModel 的缩写， M：代表数据模型，定义操作数据的业务逻辑， V：代表视图层，负责渲染数据到页面上， VM：通过双向绑定View和Model进行同步交互，不需要手动操作 DOM 的一种设计思想。
+</div></code></pre>
+<h5 id="3-vue-%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83">3. Vue 的两个核心？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 数据驱动： 数据双向绑定，用于保证数据和视图的一致性。
+    <span class="hljs-number">2</span>. 组件系统： 把页面抽象成对个相对独立的组件，实现代码的重用，提高开发效率和代码的质量，便于代码维护。
+</div></code></pre>
+<h5 id="4-v-if-%E5%92%8C-v-show-%E7%9A%84%E5%8C%BA%E5%88%AB">4. v-if 和 v-show 的区别？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 相同性：
+        都可以控制 DOM 的 显示和隐藏 
+    <span class="hljs-number">2</span>. 不同性：
+        <span class="hljs-number">1</span>. 方式： v-<span class="hljs-keyword">if</span>：对 DOM 是删除和创建的过程。 v-show： 只是通过控制css中的display，对 DOM 显示和隐藏。
+        <span class="hljs-number">2</span>. 编译： v-<span class="hljs-keyword">if</span>：值为真的时候才会进行渲染和编译。 v-show：不管值为真假都会进行渲染和编译。
+        <span class="hljs-number">3</span>. 消耗： v-<span class="hljs-keyword">if</span>： 切换时消耗大， v-show： 初始渲染的时候消耗大。
+        <span class="hljs-number">4</span>. 适用： v-<span class="hljs-keyword">if</span>： 适用于不频繁切换的业务。 v-show： 适用于频繁切换的业务
+</div></code></pre>
+<h5 id="5-v-if-%E5%92%8C-v-for-%E4%BC%98%E5%85%88%E7%BA%A7vue2%E7%9A%84%E9%97%AE%E9%A2%98-vue3%E4%B8%AD%E5%B7%B2%E7%BB%8F%E4%BF%AE%E5%A4%8D">5. v-if 和 v-for 优先级（vue2的问题， vue3中已经修复）</h5>
+<pre class="hljs"><code><div>    v-<span class="hljs-keyword">for</span> 的优先级高于 v-<span class="hljs-keyword">if</span>， 这就意味着， 不管 v-<span class="hljs-keyword">if</span> 值为真假都会先循环，后判断。
+</div></code></pre>
+<h5 id="6-%E2%98%86-vue%E4%B8%AD-key-%E5%80%BC%E7%9A%84%E4%BD%9C%E7%94%A8-%E2%98%86">6. ☆ vue中 key 值的作用 ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. key的主要作用是为了更高效的对比虚拟 DOM 中的每个节点是否为相同的节点。
+    <span class="hljs-number">2</span>. 为了在diff算法执行时更快的找到对应的节点，提高diff速度，更高效的更新虚拟DOM。
+</div></code></pre>
+<h5 id="7-%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9Fdom">7. 什么是虚拟DOM？</h5>
+<pre class="hljs"><code><div>    虚拟DOM就是普通的js对象。是一个用来描述真实dom结构的js对象，因为它不是真实的dom，所以才叫做虚拟dom。
+</div></code></pre>
+<h5 id="8-vuedirective-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4">8. vue.directive 自定义指令</h5>
+<pre class="hljs"><code><div>    指令本质上是装饰符，是 vue 对HTML 元素的的扩展，给HTML元素增加自定义功能。
+    当 vue 编译DOM时，会找到指令对象，执行指令的相关方法。
+    <span class="hljs-comment">#vue2：</span>
+    自定义指令有五个生命周期：
+        <span class="hljs-number">1</span>. bind：只调用一次，指令第一次绑定元素时调用。
+        <span class="hljs-number">2</span>. inserted：被绑定元素插入父节点时调用；
+        <span class="hljs-number">3</span>. update：被绑定元素所在的模板更新时调用，无论绑定值是否变化。
+            私有：oldVnode：上一个虚拟节点 
+        <span class="hljs-number">4</span>. componentUpdate：被绑定元素所在模板完成一次更新周期是调用；
+             私有：oldVnode：上一个虚拟节点 
+        <span class="hljs-number">5</span>. unbind：只调用一次，指令与元素解绑时调用；
+
+    <span class="hljs-comment">#vue3 </span>
+    自定义指令有七个生命周期：
+        created：
+        beforeMount：在元素被插入到 DOM 前调用
+        mounted：在绑定元素的父组件，及他自己的所有子节点都挂载完成后调用
+        beforeUpdate：绑定元素的父组件更新前调用
+            私有：之前的渲染中代表指令所绑定元素的 VNode
+        updated：在绑定元素的父组件，及他自己的所有子节点都更新后调用
+            私有：之前的渲染中代表指令所绑定元素的 VNode
+        beforeUnmount：绑定元素的父组件卸载前调用
+        unmounted：绑定元素的父组件卸载后调用
+
+    生命周期共有参数：
+        el：指令所绑定的元素，可以用来直接操作 DOM；
+        binding：一个对象，传递过来的数据； 
+        vnode：Vue 编译生成的虚拟节点；
+
+</div></code></pre>
+<h5 id="9-vue-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BC%82%E6%AD%A5%E6%B8%B2%E6%9F%93">9. Vue 为什么时候异步渲染？</h5>
+<pre class="hljs"><code><div>    当数据发生变化时就要重新渲染数据，这样性能不高， 为了防止数据一更新就更新组件，所以做了异步渲染。
+</div></code></pre>
+<h5 id="10-%E2%98%86-nexttick-%E2%98%86">10. ☆ $nextTick? ☆</h5>
+<pre class="hljs"><code><div>vue中的nextTick主要用于处理数据动态变化后，DOM还未及时更新的问题，用nextTick就可以获取数据更新后最新DOM的变化
+应该场景：
+    <span class="hljs-number">1</span>. 获取数据更新后的DOM
+    <span class="hljs-number">2</span>. 使用第三方插件 如：better-scroll
+    <span class="hljs-number">3</span>. 数组更新后获取焦点
+源码<span class="hljs-params">|原理：
+    $nextTick(callback){
+        <span class="hljs-keyword">return</span> Promise.resolve().<span class="hljs-keyword">then</span>(()=&gt;{
+            callback();
+        })
+    }
+</span></div></code></pre>
+<h5 id="11-%E5%BC%82%E6%AD%A5%E6%B8%B2%E6%9F%93%E7%9A%84%E5%8E%9F%E7%90%86">11. 异步渲染的原理？</h5>
+<pre class="hljs"><code><div>    只要侦听到数据变化，Vue将开启<span class="hljs-number">1</span>个队列，并缓存在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中-次。这种在缓冲时去除重复数据对于避免不必要的计算和DOM操作是非常重要的。nextTick方法会在队列中加入一个回调函数，确保该函数在前面的dom操作完成后才调用；
+</div></code></pre>
+<h5 id="12-%E2%98%86-vue-%E4%B8%AD%E7%9A%84-keep-alive-%E2%98%86">12. ☆ Vue 中的 keep-alive ☆</h5>
+<pre class="hljs"><code><div>    作用：实现组件缓存;
+
+    生命钩子函数：
+        <span class="hljs-symbol">activated:</span> 组件渲染后调用
+        <span class="hljs-symbol">deactivated:</span> 组件销毁后调用
+
+    配置属性: 
+        <span class="hljs-number">1</span>. <span class="hljs-symbol">include:</span> 只有名称匹配的组件会被缓存
+        <span class="hljs-number">2</span>. <span class="hljs-symbol">exclude:</span> 任何名称匹配的组件都不会被缓存
+        <span class="hljs-number">3</span>. <span class="hljs-symbol">max:</span> 最多可以缓存多少组件实例
+</div></code></pre>
+<h5 id="13-%E4%BB%80%E4%B9%88%E6%98%AFvue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">13. 什么是Vue的生命周期？</h5>
+<pre class="hljs"><code><div>    每个Vue实例在创建是都会经过一系列的初始化过程。 
+    Vue 的生命周期钩子，就是说在某一个阶段或条件去触发的函数，目的就是为了完成一些动作过着事件。
+</div></code></pre>
+<h5 id="14-%E2%98%86-vue%E7%9A%84%E7%94%9F%E5%91%BD%E9%92%A9%E5%AD%90%E6%9C%89%E5%93%AA%E4%BA%9B8--2%E2%98%86">14. ☆ Vue的生命钩子有哪些？（8 + 2）☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-symbol">beforeCreate:</span>   创建前：data和methods中的数据没有初始化
+    created：       创建后：此时 data 和 method 已经初始化完成， DOM 未挂载
+
+    beforeMount：   数据挂载前：模板已获取到，但是数据未挂载到模板上
+    mounted：       数据挂载后： 数据已挂载到模板中
+
+    beforeUpdate：  模板更新前：data 改变后，更新数据模板前调用
+    updated：       模板更新后：将 data 渲染到数据模板中
+
+    beforeDestroy： 实例被销毁前：此时可以手动销毁一些方法
+    destroyed：     销毁后
+
+    keep-<span class="hljs-symbol">alive:</span>
+        <span class="hljs-symbol">activated:</span> 组件渲染后调用
+        <span class="hljs-symbol">deactivated:</span> 组件销毁后调用
+
+    补充：
+    <span class="hljs-number">1</span>. created 和 mounted 的区别？
+        <span class="hljs-number">1</span>. 阶段： 有没有 $data、 $el
+            created：有 $data , 没有 $el； PS： 在 created 中获取DOM只能在异步方法中，或者 Vue 自带的 nextTick 中； 
+            mounted：有 $data, 有$el； PS：可以同步获取DOM；
+        <span class="hljs-number">2</span>. 执行顺序：
+            created：先执行，如有有子组件：也先执行
+            mounted：后执行，如有有子组件：在子组件执行完后，在执行
+    <span class="hljs-number">2</span>. 生命周期的使用场景？
+        created：单组件请求；
+        <span class="hljs-symbol">mounted:</span> <span class="hljs-number">1</span>. 同步获取DOM， <span class="hljs-number">2</span>. 子组件优先展示内容；
+        <span class="hljs-symbol">activated:</span> 判断 ID 是否相同，如果不同则发起请求；
+        <span class="hljs-symbol">deactivated:</span> 关闭页面时记录信息，如：页面滚动位置、视频播放时长等等；
+    <span class="hljs-number">3</span>. 生命周期的执行顺序？
+        父：beforeCreate、created、beforeMount；
+        子：beforeCreate、created、beforeMount、mounted；
+            ...
+        父：mounted；
+</div></code></pre>
+<h5 id="15-%E4%BB%80%E4%B9%88%E6%98%AFscoped-%E5%85%B6%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88">15. 什么是scoped？ 其原理是什么？</h5>
+<pre class="hljs"><code><div>    scoped 是将本组件中的 style 样式，只作于本组件。
+    原理：给 HTML 中的 DOM 添加一个不重复 data 属性（形如，data-v-<span class="hljs-number">2311</span>c06a）， 来表示他的唯一性。
+</div></code></pre>
+<h5 id="16-vue%E7%BB%84%E4%BB%B6%E4%B8%AD-data-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0">16. Vue组件中 data 为什么是函数？</h5>
+<pre class="hljs"><code><div>    为了组件独立性和复用性，data需要是函数。
+    如果data是对象的话，每个组件实例的data 都是同一个引用数据，在使用组件的时候，一个组件改变了，其他组件也跟着改变。
+    data要使用函数的形式，每次使用组件的时候创造一个新的地址，这样就不会相互影响了
+
+PS: 数据定义在data中return内和return外的区别？
+    return外：单纯的修改这个数据是没有办法修改的，因为没被数据劫持（get/set）；
+    return内：是可以被修改的；
+</div></code></pre>
+<h5 id="17-%E2%98%86-vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E2%98%86">17. ☆ Vue的响应式原理？☆</h5>
+<pre class="hljs"><code><div>    当一 Vue 在实例创建是， Vue 都会遍历 data 选项的属性， 用 Object.defineProperty 对这些属性进行监听，当访问和修改属性通知变化。 
+    每个组件实例都有相应的 watcher 程序实例，它在组件渲染的过程中会把属性记录作为依赖，当依赖变化时，会通知 watcher重新计算，从而致使它关联的组件得以更新
+</div></code></pre>
+<h5 id="18-vue-%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6">18. Vue 常用的修饰符</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. v-model 修饰符
+        <span class="hljs-number">1</span>. .<span class="hljs-symbol">lazy:</span> 输入框改变，光标离开 input 框才会更新数据；
+        <span class="hljs-number">2</span>. .<span class="hljs-symbol">trim:</span> 输入框过滤首尾空格；
+        <span class="hljs-number">3</span>. .number：自动将用户的输入值转化为数值类型；
+
+    <span class="hljs-number">2</span>. 事件修饰符
+        <span class="hljs-number">1</span>. .<span class="hljs-symbol">once:</span> 绑定的事件只触发一次；
+        <span class="hljs-number">2</span>. .<span class="hljs-symbol">self:</span> 触发当前元素自身的函数；
+        <span class="hljs-number">3</span>. .<span class="hljs-symbol">stop:</span> 阻止事件冒泡， 同理： e.stopPropagation()
+        <span class="hljs-number">4</span>. .<span class="hljs-symbol">prevent:</span> 阻止默认事件， 同理： e.preventDefault();
+        <span class="hljs-number">5</span>. .native： 触发子组件的的事件
+
+    <span class="hljs-number">3</span>. 键盘事件修饰符  @keyup 事件
+        <span class="hljs-number">1</span>. .enter 回车
+        <span class="hljs-number">2</span>. .delete 捕获“删除”和“退格”键
+        ...
+</div></code></pre>
+<h5 id="19-%E2%98%86-computed-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E7%BC%93%E5%AD%98%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E2%98%86">19. ☆ computed 为什么有缓存？实现原理？☆</h5>
+<pre class="hljs"><code><div>缓存： 
+原理：
+</div></code></pre>
+<h5 id="20-%E2%98%86-watch-%E2%98%86">20. ☆ watch ☆</h5>
+<pre class="hljs"><code><div>deep 的实现原理:
+</div></code></pre>
+<h5 id="21-%E2%98%86-computed-%E5%92%8C-watch-%E2%98%86">21. ☆ computed 和 watch ☆</h5>
+<pre class="hljs"><code><div>    computed: 
+        1. 使用和 data 中的数据一样， 
+        2. 在调用时不需要加 （）
+        3. 必须使用 return 返回
+        4. 依赖项的属性没有变化时，从缓存中读取
+
+    watch: 
+        1. 函数名称必须和data中的数据名一致
+        2. watch 中的函数有两个参数，前者是newVal，后者是oldVal
+        3. watch 中的函数是不需要调用的
+        4. 只会监听数据的值是否发生改变，而不会去监听数据的地址是否发生改变，要深度监听需要配合deep：true属性使用
+        5. immediate:true 页面首次加载的时候做一次监听
+
+    区别： 
+        1. 功能:  computed是计算属性；
+                  watch是监听一个值的变化执行对应的回调；
+        2. 是否调用缓存：  computed函数所依赖的属性不变的时候会调用缓存； 
+                          watch每次监听的值发生变化时候都会调用回调；
+        3. 是否调用return： computed必须有；
+                           watch可以没有；
+        4. 使用场景： computed当一个属性受多个属性影响的时候；例如购物车商品结算；
+                      watch当一条数据影响多条数据的时候，例如搜索框；
+        5. 是否支持异步： computed函数不能有异步；
+                         watch可以；
+</div></code></pre>
+<h5 id="21-%E2%98%86-v-model%E8%AF%AD%E6%B3%95%E7%B3%96%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84-%E2%98%86">21. ☆ v-model语法糖是怎么实现的? ☆</h5>
+<pre class="hljs"><code><div>    v-model： 本质上不过是语法糖，它负责监听用户的输入事件以及更新数据，并对一些极端场景进行一些特殊的处理；
+    通过给元素绑定input或change事件，监听用户输入的内容； 然后将内容通过 v-bind 渲染到元素上；
+    
+    <span class="hljs-symbol">PS:</span> 
+        v-model：双向绑定
+        v-bind： 单向绑定
+</div></code></pre>
+<h5 id="22-%E2%98%86-%E8%AF%B4%E4%B8%80%E4%B8%8Bspa%E5%8D%95%E9%A1%B5%E9%9D%A2%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9-%E2%98%86">22. ☆ 说一下SPA单页面有什么优缺点？ ☆</h5>
+<pre class="hljs"><code><div>    优点：
+        <span class="hljs-number">1</span>. 体验好，不刷新，减少请求，数据通过ajax获取；
+        <span class="hljs-number">2</span>. 前后端分离，开发分工明确；
+        <span class="hljs-number">3</span>. 减少服务端压力；
+    缺点：
+        <span class="hljs-number">1</span>. 首屏加载慢；（解决 vue的项目优化）；
+        <span class="hljs-number">2</span>. SEO 不利于搜索引擎抓取；（解决 vue 单页面应用怎么做的SEO）
+</div></code></pre>
+<h5 id="23-%E2%98%86-%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%89%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F-%E2%98%86">23. ☆ 组件之间的传值有几种方式？ ☆</h5>
+<p><a href="https://blog.csdn.net/weixin_55778010/article/details/124618092">传值详情</a></p>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 父传子： props 
+    <span class="hljs-number">2</span>. 子传父： $emit
+    <span class="hljs-number">3</span>. 兄弟组件： EventBus
+    <span class="hljs-number">4</span>. 全局组件： Vuex、cookie、localStorage、sessionStorage
+    <span class="hljs-number">5</span>. 不常使用： provide、inject， $parent、$children，$attrs、$listeners，$ref、$refs;
+</div></code></pre>
+<h5 id="24-v-html-%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98">24. v-html 存在的问题？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 易导致XSS攻击；
+    <span class="hljs-number">2</span>. v-html 会覆盖当前标签内的子元素；
+    <span class="hljs-number">3</span>. scoped 的样式不会应用在 v-html 内部；
+    <span class="hljs-number">4</span>. v-html 的内容不会经过vue的模板编译器处理；
+</div></code></pre>
+<h5 id="25-vue-%E6%80%8E%E4%B9%88%E5%81%9A%E6%95%B0%E7%BB%84%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F">25. vue 怎么做数组的响应式?</h5>
+<pre class="hljs"><code><div>    vue2中： vue 重新写了数组的七个方法
+        <span class="hljs-number">1</span>. push：在数组尾部添加一个元素；
+        <span class="hljs-number">2</span>. pop：删除数组尾部的一个元素；
+        <span class="hljs-number">3</span>. unshift：在数组头部添加一个元素；
+        <span class="hljs-number">4</span>. shift：删除数组头部的一个元素；
+        <span class="hljs-number">5</span>. splice：指定索引 删除、插入、替换 元素；
+        <span class="hljs-number">6</span>. sort：对数组进行排序；
+        <span class="hljs-number">7</span>. reverse：对数组内的元素进行反转；
+    
+    vue3中： 使用 Proxy 是可以监听数组中的元素的；
+</div></code></pre>
+<h5 id="26-%E8%AF%B4%E4%B8%80%E4%B8%8Bvue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%92%8C%E7%BA%BF%E4%B8%8A%E7%8E%AF%E5%A2%83%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2">26. 说一下vue开发环境和线上环境如何切换</h5>
+<pre class="hljs"><code><div>
+</div></code></pre>
+<h5 id="27-%E2%98%86-vue-%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BC%98%E5%8C%96-%E2%98%86">27. ☆ Vue 项目的优化 ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>.  循环的时候使用正确的key 。
+    <span class="hljs-number">2</span>.  封装高度复用的模块。
+    <span class="hljs-number">3</span>.  路由懒加载，首屏加载快。
+    <span class="hljs-number">4</span>.  keep-alive 缓存不活跃的组件。
+    <span class="hljs-number">5</span>.  尽量减少data中的数据，data中的数据都会增加getter和setter，会收集对应的watcher。
+    <span class="hljs-number">6</span>.  图片放到cdn上 ，icon字体文件。
+    <span class="hljs-number">7</span>.  组件按需导入 ，需要什么导入什么。
+    <span class="hljs-number">8</span>.  防抖、节流
+    <span class="hljs-number">9</span>.  第三方模块按需导入
+    <span class="hljs-number">10</span>. 在更多的情况下，使用v-<span class="hljs-keyword">if</span>替代v-show
+</div></code></pre>
+<h5 id="28-vueset">28. vue.$set()</h5>
+<pre class="hljs"><code><div>    问题： 属性必须在 data 对象上存在, 才是响应式的数据。如果在给对象添加新的属性，新加的属性不是响应式的， 需要通过 Vue.$set();
+    使用：
+    Array： this.$set(Array, index, newValue);
+    Object： this.$set(Object, key, newValue);
+
+    <span class="hljs-symbol">PS:</span> 除了 $set 外 this.$forceUpdate() 也可以更新视图； <span class="hljs-comment">#不建议使用</span>
+        使用：this.$forceUpdate();
+        使用场景：
+        vue多层循环，动态改变数据后渲染的很慢或者不渲染。
+        比如v-<span class="hljs-keyword">for</span>里面数据层次太多， 修改过数据变了，页面没有重新渲染，需手动强制刷新。
+</div></code></pre>
+<h5 id="29-vue-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84seo">29. vue 单页面应用怎么做的SEO？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 使用 Nuxt.js
+        <span class="hljs-number">1</span>. Nuxt 服务端渲染应用部署;
+        <span class="hljs-number">2</span>. Nuxt 静态应用部署;
+    <span class="hljs-number">2</span>. 使用 插件
+        <span class="hljs-number">1</span>. <span class="hljs-string">'vue-meta-info'</span>;
+        <span class="hljs-number">2</span>. <span class="hljs-string">'prerender-spa-plugin'</span>;
+</div></code></pre>
+<h5 id="30-vue2-%E9%A1%B5%E9%9D%A2-data-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%94%BE%E5%9C%A8-return-%E5%92%8C-%E4%B8%8D%E6%94%BEreturn-%E7%9A%84%E5%8C%BA%E5%88%AB">30. vue2 页面 data 中的数据放在 return 和 不放return 的区别？</h5>
+<pre class="hljs"><code><div>    放在return：数据是响应式的，数据改别视图也跟着改别； PS：大量的数据放到return中会导致页面的性能差。
+
+    不放return：数据不是响应式的，但数据是可以改别的， 
+    使用场景： 一个变量没有在html显示，而在内部用到，最好定义在return外面
+    更新视图：
+        1. this.$forceUpdate(); 强制更新视图；
+        2. 使用 DOM 的方法；
+</div></code></pre>
+<h5 id="32-%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E6%A0%B9%E7%BB%84%E4%BB%B6%E5%92%8C%E7%88%B6%E7%BB%84%E4%BB%B6">32. 如何找到根组件和父组件</h5>
+<pre class="hljs"><code><div>    this.$root.$el // 根组件
+    this.$parent.$el // 找到当前组件的父组件， 如果找不到返回自身
+</div></code></pre>
+<h5 id="34-%E2%98%86%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E2%98%86">34. ☆封装组件☆</h5>
+<h5 id="35-vue%E7%BB%84%E4%BB%B6%E4%B8%ADname%E7%9A%84%E4%BD%9C%E7%94%A8">35. Vue组件中name的作用？</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 当项目使用 keep-alive 时， 可搭配组件的 name 进行缓存过滤。
+    <span class="hljs-number">2</span>. 组件进行递归时，需要调用自身的 name。
+    <span class="hljs-number">3</span>. vue 调试工具中显示的 name， 是由 vue 组件中的 name 决定的。
+</div></code></pre>
+<h5 id="37-vue-mixins">37. vue mixins？</h5>
+<pre class="hljs"><code><div>    定义：将组件的公共逻辑或者配置提取出来，哪个组件需要用到时，直接将提取的这部分混入到组件内部即可。这样既可以减少代码冗余度，也可以让后期维护起来更加容易。
+    使用： 
+        局部使用：mixins：[mixins]
+        全局使用：Vue.mixin(mixins);
+    抽离代码和组件代码冲突：
+        （1）生命周期函数：先执行mixin中生命周期函数中的代码，然后在执行组件内部的代码
+        （2）data数据冲突：组件中的data数据会覆盖mixin中数据；
+        （3）方法冲突：组件方法调用；
+    优缺点：
+        优点：1.提高代码复用性 2.无需传递状态 3.维护方便，只需要修改一个地方即可
+        缺点：1.命名冲突 2.滥用的话后期很难维护 3.不好追溯源，排查问题稍显麻烦 4.不能轻易的重复代码
+
+    PS：Mixin和Vuex的区别？
+        Vuex公共状态管理，主要是以数据状态为主，在一个组件中修改数据，其他组件中也会跟着变化。
+        mixins中的数据和方法都是独立的，组件之间使用后是互相不影响的。
+</div></code></pre>
+<h5 id="38-options-api-%E5%92%8C-composition-api-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">38. options API 和 composition API 有什么区别？</h5>
+<pre class="hljs"><code><div>    Composition API是一组API，包括：Reactivity APl、生命周期钩子、依赖注入，使用户可以通过导入函数方式编写vue组件，使得组件的可复用性、可维护性和可读性更强；而Options API则通过声明组件选项的对象形式编写组件；
+
+    Composition API最主要作用是能够简洁、高效的复用逻辑；解决了过去options API中mixins的各种缺点（命名冲突、来源不明）；另外Composition API具有更加敏捷的代码组织能力，很多用户喜欢options API，认为所有东西都有固定位置的选项放置代码，但是单个组件增长过大之后这反而成为限制，一个逻辑关注点分散在组件各处，形成代码碎片，维护时需要反复横跳，而Composition API则可以将它们有效组织在一起；最后composition API拥有更好的类型推断，对ts支持更友好， options API在设计之初并未考虑类型推断因素，虽然官方为此做了很多复杂的类型体操，确保用户可以在使用options API时获得类型推断，然而还是没办法用在mixins和provide/inject上；
+
+    vue3首推Composition API，但是这会让我们在代码组织上多花点心思，因此在选择上，如果我们项目中只有一些低复杂度的场景， options API仍是一个好选择；而对于那些大型，高扩展，强维护的项目上，composstion API 会获得更大收益；
+</div></code></pre>
+<h5 id="39-assets-%E5%92%8C-static-%E7%9A%84%E5%8C%BA%E5%88%AB">39. assets 和 static 的区别</h5>
+<pre class="hljs"><code><div>    相同点：assets 和 static 两个都是存放静态资源文件。
+    不同点：
+        assets：assets 中存放的静态资源文件在项目打包过程中，会被压缩体积、代码格式化。 打包完成后会被存放到static中。
+        static：static 中放置的静态资源文件就不会要走打包压缩格式化等流程，从而体积会比 assets 要大；
+    PS： 建议：项目中自己编写的css、js、image 存放到 assets 中。
+              像第三方的文件如 iconfoont.css。存放到 static， 避免再次压缩时出错。  
+</div></code></pre>
+<h5 id="40-delete-%E5%92%8C-vuedelete-%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E7%9A%84%E5%8C%BA%E5%88%AB">40. delete 和 Vue.delete 删除数组的区别</h5>
+<pre class="hljs"><code><div>    delete 只是被删除的元素变成了 empty/undefined 其他的元素的键值还是不变。（数组的长度没有变化）
+    Vue.delete 直接删除了数组 改变了数组的键值。（数组的长度发生变化）
+</div></code></pre>
+<h4 id="vue2%E5%92%8Cvue3%E7%9A%84%E5%8C%BA%E5%88%AB">Vue2和Vue3的区别？</h4>
+<pre class="hljs"><code><div>    1. 双向数据绑定：
+        vue2：使用 ES5 的Object.defineProperty();
+        vue3: 使用 ES6 的 proxy; （懒惰的递归、用户不调用就不递归）
+
+    2. 生命周期：
+        vue2:
+            beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、beforeDestroy、destroyed、activated、deactivated
+        vue3:
+            setup、onBeforeMount、onMounted、onBeforeUpdate、onUpdate、onUnmount、onUnmounted、onActivated、onDeactivated
+
+    3. vue2（Options API）和 vue3（Composition API）；
+        vue2 使用选项型API（Options API）
+        vue3 使用合成型API（Composition API）
+
+    4. 是否支持多个根节点
+        vue2 只支持一个根节点
+        vue3 支持多个根节点
+    
+    5. 自定义指令生命周期不同：
+        vue2：（五个） bind、inserted、update、componentUpdate、unbind；
+        vue3：（七个）created、beforeMount、mounted、beforeUpdate、updated、beforeUnmount、mounted
+</div></code></pre>
+<h4 id="vuex">Vuex</h4>
+<h5 id="1-%E4%BB%80%E4%B9%88%E6%98%AFvuex">1. 什么是Vuex？</h5>
+<pre class="hljs"><code><div>    Vuex 是 vue.js 应用程序开发的 状态管理模式 。它采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化
+</div></code></pre>
+<h5 id="2-vuex-%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">2. Vuex 解决了什么问题？</h5>
+<pre class="hljs"><code><div>    中大型单页面应用程序，项目开发中频繁的使用组件传参的方式来同步 data 中的值，管理和维护这些值是非常难的， vuex 是 vue 为了这些被多个组件频繁使用的值提供的一个统一管理的工具。
+</div></code></pre>
+<h5 id="3-vuex-%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E5%B1%9E%E6%80%A7">3. Vuex 有哪几种属性？</h5>
+<pre class="hljs"><code><div>    state:      存储所有共享的状态信息；
+    getters:    计算 state 中的值，在数据展示前进行一些变化处理，具有缓存功能，能够提高运行效率，不可以直接修改数据；
+    mutations:  更改状态的逻辑，同步操作；理论上修改 state 的唯一路径；
+    actions:    提交mutation，可以包含异步操作；
+    modules:    将vuex进行分模块；
+</div></code></pre>
+<h5 id="4-mapstate-mapgetters-mapactions-mapmutations">4. mapState, mapGetters, mapActions, mapMutations</h5>
+<pre class="hljs"><code><div>    当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余。
+    mapState： 
+    mapGetters：
+    mapActions：
+    mapMutations：
+    PS: 使用辅助函数不可以直接修改数据；
+</div></code></pre>
+<h5 id="5-store-%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98">5. store 需要注意的问题？</h5>
+<pre class="hljs"><code><div>    1. store 存储的状态是响应式的，当组件读取状态时，如果 store 中的状态发生改变，那么相应的组件也会发生改变。
+    2. 不能直接改变 store 中的状态。改变 store 的唯一途径是 （commit）mutations，这样使得我们可以方便地跟踪每一个状态的变化。
+</div></code></pre>
+<h5 id="6-mutation-%E5%92%8C-action-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">6. mutation 和 action 有什么区别？</h5>
+<pre class="hljs"><code><div>    1. 流程顺序：视图触发 -&gt; action 触发 -&gt; mutations 触发 -&gt; state； 
+
+    2. 定位：基于流程顺序，二者扮演不同的角色。
+        1. mutation：专注于修改State，理论上是修改State的唯一途径。
+        2. action：业务代码、异步请求。
+
+    3. 限制： 定位不同，二者有着不同的限制。
+        1. mutation：必须是同步执行。
+        2. action：可以是异步，但不能直接修改state；
+
+    4. 调用：
+        mutation： 使用 this.$store.commit() 调用；
+        action： 使用 this.$store.dispatch() 调用； 
+</div></code></pre>
+<h5 id="7-vuex-%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98">7. Vuex 存储的数据浏览器刷新数据丢失问题</h5>
+<pre class="hljs"><code><div>    Vuex 本身不是持久化存储的数据，Vuex是一个状态管理仓库（state：全局属性）==》就是存放全局属性的地方
+    实现持久化存储：1. 自己封装到localStorage
+                   2.使用插件：'vuex-persistedstate' 插件
+
+</div></code></pre>
+<h4 id="vuerouter">VueRouter</h4>
+<h5 id="1-%E2%98%86-vue-router-%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB%E2%98%86">1. ☆ vue-router 有哪几种钩子函数？(导航守卫)☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 全局性的守卫：
+        <span class="hljs-number">1</span>. router.beforeEach :    全局前置守卫，路由跳转前触发，参数 to、from、<span class="hljs-keyword">next</span>
+        <span class="hljs-number">2</span>. router.beforeResolve : 全局解析守卫，路由跳转前触发， 参数 to、from、<span class="hljs-keyword">next</span>
+        <span class="hljs-number">3</span>. router.afterEach :     全局后置守卫，路由跳转完成后触发，参数包括to、from，没有 <span class="hljs-keyword">next</span>
+    
+    <span class="hljs-number">2</span>. 路由独享的守卫：
+        <span class="hljs-number">1</span>. beforeEnter :          路由跳转前触发，如有beforeEach，则在其后触发，参数 to、from、<span class="hljs-keyword">next</span>
+    
+    <span class="hljs-number">3</span>. 组件内的守卫：
+        <span class="hljs-number">1</span>. beforeRouteEnter :    在组件 beforeCreate 前触发，参数 to、from、<span class="hljs-keyword">next</span>。 (不能使用this，可以使用<span class="hljs-keyword">next</span>中的vm )
+        <span class="hljs-number">2</span>. beforeRouteUpdate :    (vue-router <span class="hljs-number">2.2</span> 新增) 在当前路由改变，但是依然渲染该组件是调用，参数 to、from、<span class="hljs-keyword">next</span>
+        <span class="hljs-number">3</span>. beforeRouteLeave :     导航离开该组件的对应路由时被调用，参数 to、from、<span class="hljs-keyword">next</span>
+</div></code></pre>
+<h5 id="2-vue-router-%E5%A6%82%E4%BD%95%E5%93%8D%E5%BA%94-%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0-%E7%9A%84%E5%8F%98%E5%8C%96">2. vue-router 如何响应 路由参数 的变化?</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 复用组件时，相对 路由参数的变化 作出响应式， 可以使用 watch 监听 $route 对象；
+    <span class="hljs-number">2</span>.使用 （vue-router <span class="hljs-number">2.2</span>） 中引入的 beforeRouteUpdate 守卫
+</div></code></pre>
+<h5 id="3-%E2%98%86-vue-router-%E8%B7%AF%E7%94%B1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E2%98%86">3. ☆ vue-router 路由的两种模式？☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. hash模式：监听 onhashChange 实现；
+    <span class="hljs-number">2</span>. history模式： 使用 h5的API pushState（）和 replaceState（）和 onpopstate 监听URL变化
+    两者的区别：
+        <span class="hljs-number">1</span>. 原理： 同上
+        <span class="hljs-number">2</span>. <span class="hljs-symbol">url:</span>  hash模式 url 中带有 <span class="hljs-string">'#'</span> 号， history模式不带有 <span class="hljs-string">'#'</span>;
+        <span class="hljs-number">3</span>. 兼容: hash模式 兼容 IE8， history 模式 兼容 IE1<span class="hljs-number">0</span>
+        <span class="hljs-number">4</span>. 跳转: hash模式 只能修改<span class="hljs-string">'#'</span>后面的内容，history模式 只要是同源的就可以
+    补充 区别：
+        <span class="hljs-number">1</span>. 关于找不到页面：
+            history：找不到页面也会向后台发送一次GET请求；
+            hash：不会向后台发送请求
+        <span class="hljs-number">2</span>. 关于项目打包自测：
+            history：默认情况看不到内容
+            hash：可以看到内容
+</div></code></pre>
+<h5 id="4-vuerouter%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0-query-%E5%92%8C-params-%E7%9A%84%E5%8C%BA%E5%88%AB">4. VueRouter传递参数 query 和 params 的区别？</h5>
+<pre class="hljs"><code><div>   <span class="hljs-number">1</span>. 传参： query 传参会在url 中显示; params 传参不会在url中显示;
+   <span class="hljs-number">2</span>. 刷新： query 刷新后 数据不会丢失; params 刷新后数据会丢失;
+   <span class="hljs-number">3</span>. 引入： query传参要用path、name来引入; params传参要用name来引入（如果是path， 过去的参数为undefined）;
+
+   PS： params传参 不想刷新后数据丢失，需要在 router 中在该路径后面配置<span class="hljs-string">'/:id'</span>
+</div></code></pre>
+<h5 id="5-router-%E5%92%8C-route-%E7%9A%84%E5%8C%BA%E5%88%AB">5. router 和 route 的区别？</h5>
+<pre class="hljs"><code><div>    $router: 是 VueRouter 的实例，相当于一个全局的路由器对象，作用是进行路由跳转的；
+    $route: 是跳转路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的值；
+</div></code></pre>
+<h5 id="6-%E5%AF%BC%E8%88%AA%E6%95%85%E9%9A%9C">6. 导航故障</h5>
+<pre class="hljs"><code><div>    这个错误是 vue-router 内部错误，没有进行 catch 处理，导致的编程式导航跳转问题，向同一地址跳转时会报错的情况（push 和replace 都会导致这个情况的发生）。
+    解决：
+        方案一：
+            安装 vue-router 3.0 以下版本，先卸载 3.0 以上版本然后再安装旧版本 。
+            npm install vue-router@2.8.0 -S
+        方案二：
+            针对于路由跳转相同的地址添加 catch 捕获一下异常。
+            this.$router.push({path:'/register'}).catch(err =&gt; { console.log(err) })
+        方案三：
+            在路由 router 里面加上以下这段代码，（重写push 和replace方法）
+            // 解决编程式路由往同一地址跳转时会报错的情况
+            const originalPush = VueRouter.prototype.push;
+            const originalReplace = VueRouter.prototype.replace;
+
+            // push
+            VueRouter.prototype.push = function push(location, onResolve, onReject) {
+            if (onResolve || onReject)
+                return originalPush.call(this, location, onResolve, onReject);
+            return originalPush.call(this, location).catch(err =&gt; err);
+            };
+
+            //replace
+            VueRouter.prototype.replace = function push(location, onResolve, onReject) {
+            if (onResolve || onReject)
+                return originalReplace.call(this, location, onResolve, onReject);
+            return originalReplace.call(this, location).catch(err =&gt; err);
+            };
+</div></code></pre>
+<h4 id="axios">Axios</h4>
+<h5 id="1-%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BD%A0%E5%AF%B9axios%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E7%90%86%E8%A7%A3">1. 说一下你对axios拦截器的理解</h5>
+<pre class="hljs"><code><div>
+</div></code></pre>
+<h2 id="%E7%BD%91%E7%BB%9C">网络</h2>
+<h5 id="1-%E2%98%86-http-%E7%8A%B6%E6%80%81%E7%A0%81-%E2%98%86">1. ☆ http 状态码； ☆</h5>
+<pre class="hljs"><code><div>
+    /*
+        200:  请求成功
+        204： 请求成功，但没有资源返回
+
+        301： 永久重定向
+        302： 临时重定向
+        304： 资源未修改，服务不会返回资源
+
+        400： 请求报文中出现语法错误
+        401： 未经授权，禁止访问
+        403： 没有权限，禁止访问
+        404： 没有找到资源
+
+        500： 服务器内部错误
+        503： 服务器在维护或超负荷运行
+    */ 
+</div></code></pre>
+<h5 id="2-%E5%8E%9F%E7%94%9Fajax--fetch-axios-%E7%9A%84%E5%8C%BA%E5%88%AB">2. 原生ajax 、 fetch 、axios 的区别；</h5>
+<pre class="hljs"><code><div>  
+</div></code></pre>
+<h5 id="3-%E2%98%86-http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB-%E2%98%86">3. ☆ HTTP和HTTPS协议的区别? ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. https 协议需要 ca 证书，费用较高； 而 http 协议不需要；
+    <span class="hljs-number">2</span>. https 协议具有安全性的SSL加密传输协议； http协议是超文本传输协议，信息是明文传输；
+    <span class="hljs-number">3</span>. https 协议是 <span class="hljs-number">443</span> 的端口； http 协议是 <span class="hljs-number">80</span> 的端口；
+    <span class="hljs-number">4</span>. https 协议是具有SSL和HTTP协议构建的可进行加密传输、身份认证的网络协议，比HTTP更加安全；http 协议连接很简单,是无状态的;
+</div></code></pre>
+<h5 id="4-%E2%98%86-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB-%E2%98%86">4. ☆ GET和POST请求的区别? ☆</h5>
+<pre class="hljs"><code><div>    <span class="hljs-number">1</span>. 获取、提交数据：
+        GET： 多用于获取数据；
+        POST： 多用于提交数据；
+    <span class="hljs-number">2</span>. 传递数据大小：
+        GET：请求在URL中传送的参数是有长度限制的；   
+        POST：理论上是不会受限制的，上传文件通常要使用post方式；
+    <span class="hljs-number">3</span>. 安全性：
+        GET：请求的数据会显示在 URL 中。
+        POST： 请求的数据放在 Request body中。
+    <span class="hljs-number">4</span>. 浏览器历史记录：
+        GET：会被完整保留在浏览器历史记录中；
+        POST：不会被记录
+    <span class="hljs-number">5</span>. 编码：
+        GET：只能进行url编码
+        POST：支持多种编码方式
+    <span class="hljs-number">6</span>. 数据类型：
+        GET：只接受ASCII字符
+        POST：没有限制
+</div></code></pre>
+<h5 id="5-%E2%98%86-%E8%BE%93%E5%85%A5-url-%E5%90%8E%E6%8C%89%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%88%B0%E7%94%9F%E6%88%90%E7%BD%91%E9%A1%B5%E7%9A%84%E8%BF%87%E7%A8%8B-%E2%98%86">5. ☆ 输入 url 后，按下回车后到生成网页的过程 ☆</h5>
+<p><a href="https://www.cnblogs.com/yx520zhao/p/10471098.html">详情</a></p>
+<pre class="hljs"><code><div>    简易版：
+        输入地址 ==&gt; 查看 浏览器缓存、系统缓存、路由缓存（有缓存的话，显示页面 结束） ==&gt; 域名解析 ==&gt; 建立 TCP 链接、三次握手 ==&gt; 浏览器发送http请求 ==&gt; 服务器返回数据 ==&gt; 浏览器接受数据 ==&gt; 浏览器渲染，同时设置缓存、关闭TCP连接 
+    详情版：
+        
+        <span class="hljs-number">1</span>. 浏览器开启处理请求：浏览器开启一个线程处理请求，对url进行判断如果是http协议就按照web方式处理。
+        <span class="hljs-number">2</span>. 域名解析： 浏览器自身DNS -&gt; 系统DNS、host -&gt; 路由器缓存 -&gt; 运营商DNS、根域 -&gt; com域的顶级域的IP地址
+        <span class="hljs-number">3</span>. 浏览器向域名对应的IP地址服务器发起TCP连接；
+        <span class="hljs-number">4</span>. TCP/IP连接建立起来以后，浏览器就可以向服务器发送HTTP请求了；
+        <span class="hljs-number">5</span>. 服务器端接受到了这个请求后，根据路径参数，经过后端的一些处理之后，把处理后的结果返回给浏览器；
+        <span class="hljs-number">6</span>. 浏览器拿到了完整的HTML页面代码或者其他的数据结果后，浏览器开始下载HTML文档，同时设置缓存并关闭TCP连接
+        <span class="hljs-number">7</span>. 浏览器根据拿到的资源对页面进行渲染，最终把一个完整的页面呈现给用户。
+</div></code></pre>
+<h5 id="6-%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98-%E5%92%8C-%E5%BC%BA%E7%BC%93%E5%AD%98">6. 协商缓存 和 强缓存</h5>
+<pre class="hljs"><code><div>协商缓存（对比缓存）：
+    协商缓存（也叫对比缓存）：是由服务器来确定资源是否可用，所以客户端与服务器端要通过某种标识来进行通信；
+    原理：浏览器第一次发出请求时会带上字段（Last-Modified或者Etag），则后续请求则会带上对于的请求字段（if-modified-since或者if-none-Match），服务器对标识进行对比决定是否使用缓存
+    Last-Modified 和 Etag 的区别？ 
+    Last-Modified/if-modified-since 是用时间作为标识， 缺点：1.精确度回到秒级 2.文件会每隔一段时重新生成，内容没有改变，Last-Modified/if-modified-since 会被修改，从而会重新发送完整的请求。
+    Etag/if-none-Match：是用 字符型的唯一标识，会更加的精确，也解决了文件重新生成的问题。Etag 优先于 Last-Modified
+
+强缓存（本地缓存）：
+    强缓存（本地缓存）：是由服务器决定是否将资源进行缓存，如果决定缓存，在设置的时间内就不会发起HTTP请求，分为 expires、cache-control
+    原理：完全是由服务器决定，前端不需要进行操作。
+    expires： 用于表示资源的过期时间的请求头字段，值是一个绝对时间，是由服务器端返回的。 缺点：expires是根据本地的时间来判断的，假设客户端和服务器时间不同，会导致缓存命中误差
+    cache-control：是由服务器决定缓存到期时间， cache-control 优于 expires；
+
+PS：强缓存和协商缓存同时存在时，先对比强缓存是否还再有效期，如果强缓存生效则对比协商缓存，即强缓存 &gt; 协商缓存
+</div></code></pre>
+
+</body>
+</html>
