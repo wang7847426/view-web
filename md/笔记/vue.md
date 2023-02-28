@@ -91,3 +91,19 @@
 ```javascript{.line-numbers}
     
 ```
+## 7. 重新定义数组的方法
+```javascript{.line-numbers}
+    var arr1 = [1, 3, 5];
+    var newArrayProto = Object.create(Array.prototype)
+    var oldArrayProto = Array.prototype;
+
+    ['push', 'pop', 'unshift', 'shift', 'sort', 'splice', 'reverse'].forEach(method => {
+        newArrayProto[method] = function (...args) {
+            console.log('调用自己的方法');
+            oldArrayProto[method].apply(this, args)
+        }
+    })
+    arr1.__proto__ = newArrayProto; // 关键
+    arr1.push(1, 2, 3);
+    console.log(arr1);
+```
