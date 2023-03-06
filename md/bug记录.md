@@ -18,7 +18,7 @@
         // 2. 使用数组的方法如 push、pop、unshift、shift
     }
     init(arrList)
-``` 
+```      
 
 ### Vue
 ##### 1. 在同一组件下使用对 data 中的引用数据的问题；
